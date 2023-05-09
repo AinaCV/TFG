@@ -82,13 +82,13 @@ public struct PlayerData
     public Vector3 playerPosition;
     public Quaternion playerRotation;
     public List<ItemData> itemsList;
-    public List<DecisionsData> decisions;
+    public List<DecisionData> decisions;
 
     public PlayerData(Vector3 position, Quaternion rotation, ItemData items)
     {
         playerPosition = new Vector3(659.51947f, 12.7185326f, 503.6745f);
         playerRotation = new Quaternion(0, 0.63f, 0, 0.77f);
         itemsList = new List<ItemData>();
-        decicions = new List<>();
+        decisions = new List<DecisionData>();
     }
 }
