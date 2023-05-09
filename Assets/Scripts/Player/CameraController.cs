@@ -18,9 +18,11 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        
-
         if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            Cursor.lockState = CursorLockMode.None; // para que aparezca el cursor en los dialogos
+        }
+        else
         {
             float mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
             float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
@@ -41,10 +43,6 @@ public class CameraController : MonoBehaviour
             {
                 yRotation = minY;
             }
-            Cursor.lockState = CursorLockMode.None; // para que aparezca el cursor en los dialogos
-        }
-        else
-        {
             Cursor.lockState = CursorLockMode.Locked;
         }
     }
