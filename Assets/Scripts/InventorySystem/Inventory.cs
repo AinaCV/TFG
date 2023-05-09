@@ -1,86 +1,121 @@
+using SaveLoadSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Inventory
+public class Inventory : MonoBehaviour
 {
-    public List<Item> items = new List<Item>(); // Lista de items en el inventario
-    public List<InventorySlot> inventorySlots = new List<InventorySlot>(); //Lista de los slots disponibles
+    [SerializeField] public List<InventorySlot> inventorySlots;
 
-    public void AddItem(Item item) // Añade
+    public GameObject inventorySlotPrefab;
+    public Transform inventoryContent;
+    public GameObject inventoryPanel;
+    public GameObject healButton;
+    public bool inventoryOnScreen;
+
+
+
+    public int potionCount;
+    public static Inventory Instance { get; private set; }
+
+    private void Awake()
     {
-        items.Add(item);
+        Instance = this; //el inventario se inicializa en un awake
+        inventorySlots = new List<InventorySlot>();
+        UpdateInventory(); //las cosas acceden al inventario despúes de inicializarse
     }
 
-    public void RemoveItem(Item item) // Quita
+    private void Update()
     {
-        items.Remove(item);
-    }
-
-    public bool HasItem(Item item) // Comprueba si un item está en el inventario
-    {
-        return items.Contains(item);
-    }
-
-    public int GetItemCount(Item item) // Obtiene la cantidad de un item en el inventario
-    {
-        int count = 0;
-        for (int i = 0; i < items.Count; i++)
+        if (inventoryOnScreen)
         {
-            if (items[i] == item)
-            {
-                count++;
-            }
+            inventoryPanel.SetActive(true);
+            //AudioManager.Instance.PlayAudio(clip.name);
         }
-        return count;
-    }
 
-    public void Clear() // Limpia el inventario
-    {
-        items.Clear();
-    }
-    public bool Contains(Item item)
-    {
-        return items.Contains(item);
-    }
-
-    public List<string> GetInventoryData() // Obtiene los datos del inventario en forma de una lista de strings
-    {
-        List<string> itemNames = new List<string>();
-        foreach (InventorySlot slot in inventorySlots)
+        if (!inventoryOnScreen)
         {
-            if (slot.item != null)
-            {
-                itemNames.Add(slot.item.itemName); // Añade el nombre del item al inventario
-            }
-            else
-            {
-                itemNames.Add("");
-            }
+            inventoryPanel.SetActive(false);
+            //AudioManager.Instance.PlayAudio(clip.name);
         }
-        return itemNames;
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            ChangeInventoryState();
+        }
     }
 
-    public void SetInventoryData(List<string> itemNames, List<Item> itemList) // Establece los datos del inventario a partir de una lista de strings
+    public bool AddToInventory(ItemData itemToAdd, int amountToAdd)
     {
+        int i = 0;
+
+        while (i < inventorySlots.Count)
+        {
+            if (inventorySlots[i].itemName == itemToAdd.name)
+            {
+                inventorySlots[i].itemCount = (inventorySlots[i].itemCount + amountToAdd);
+                //(int.Parse(inventorySlots[i].itemCount.text) + amountToAdd).ToString();
+                return true;
+            }
+            i++;
+        }
+        inventorySlots.Add(new InventorySlot(itemToAdd));
+        return true;
+    }
+    public void RemoveFromInventory(string itemToRemove)
+    {
+        //int i = 0;
+
+        //while (i < inventorySlots.Count)
+        //{
+        //    if (inventorySlots[i].itemName == itemToRemove)
+        //    {
+        //        inventorySlots[i].itemCount = (inventorySlots[i].itemCount - 1);
+        //        UpdateInventory();
+        //        break;
+        //    }
+        //}
+        //if (i <= 0)
+        //{
+        //    inventorySlots.RemoveAt(i);
+        //}
+        //i++;
+
         for (int i = 0; i < inventorySlots.Count; i++)
         {
-            if (itemNames[i] != "")
+            if (inventorySlots[i].itemName == itemToRemove)
             {
-                InventorySlot slot = inventorySlots[i];
-                slot.item = Item.GetItem(itemNames[i], itemList); // Obtiene el item a partir de su nombre
-                slot.UpdateSlotUI();
+                inventorySlots[i].itemCount = (inventorySlots[i].itemCount - 1);
+                if (inventorySlots[i].itemCount <= 0)
+                {
+                    inventorySlots.Remove(inventorySlots[i]);
+                }
+                UpdateInventory();
             }
         }
     }
 
-    public void ResetInventory()
+    public void ChangeInventoryState()
     {
-        foreach (InventorySlot slot in inventorySlots)
+        inventoryOnScreen = !inventoryOnScreen; //comprueba en que estado se encuentra el bool y lo cambia al pulsar la tecla
+    }
+
+    public void UpdateInventory()
+    {
+        //Limpia
+        for (int i = 0; i < inventoryContent.childCount; i++)
         {
-            slot.item = null;
-            slot.UpdateSlotUI();
+            Destroy(inventoryContent.GetChild(i).gameObject);
+        }
+        //Añade
+        for (int i = 0; i < inventorySlots.Count; i++)
+        {
+            GameObject slotObject = Instantiate(inventorySlotPrefab, inventoryContent);
+            InventorySlotRef refer = slotObject.GetComponent<InventorySlotRef>();
+
+            refer.image.sprite = inventorySlots[i].itemIcon;
+            refer.itemNameText.text = inventorySlots[i].itemName;
+            refer.itemCountText.text = inventorySlots[i].itemCount.ToString();
         }
     }
 }
