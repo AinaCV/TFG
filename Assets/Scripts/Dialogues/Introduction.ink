@@ -1,0 +1,9 @@
+Lilith...
+
+Where is your brother?
+
+He should be back by now.
+
+Please, go look for him, it's not safe out there. I hope he didn't bump into a soldier, or worse...
+
+Where did that little brother of yours went... Oh gods, let him be safe...
