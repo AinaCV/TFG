@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("Movement")]
     private CharacterController controller;
     public float speed = 5f;
     public float runSpeed = 10f;
     public float gravityforce = 50f;
-    public int health;
+
+    [Header("Health")]
+    public int currentHealth;
     public int maxHealth = 10;
+    public HealthBar healthBar;
+
+    [Header("Stamina")]
     public float stamina;
     public float maxStamina = 10;
     public float recoverStaminaMaxTime = 5;
     public float recoverStamina;
-    private Vector3 targetDirection;
+
     //Animator anim;
     [Header("Bools")]
     public bool isRegenerating = false;
@@ -37,7 +43,8 @@ public class Player : MonoBehaviour
     {
         //anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
-        health = maxHealth;
+        currentHealth = maxHealth;
+        healthBar.SetMaxHaelth(maxHealth);
         stamina = maxStamina;
     }
 
@@ -81,6 +88,12 @@ public class Player : MonoBehaviour
         Move();
         //Stamina();
         //Death();
+    }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
     }
 
     void Move()

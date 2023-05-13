@@ -55709,6 +55709,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1145902905}
   - component: {fileID: 1145902906}
+  - component: {fileID: 1145902907}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -55784,12 +55785,25 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 4
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 4
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1145902907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1145902904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 624fcfd363fce3c4b8cf9407b2b5a600, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1145902906}
 --- !u!1001 &1147335669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -67857,8 +67871,9 @@ MonoBehaviour:
   speed: 5
   runSpeed: 10
   gravityforce: 50
-  health: 0
+  currentHealth: 10
   maxHealth: 10
+  healthBar: {fileID: 1145902907}
   stamina: 0
   maxStamina: 10
   recoverStaminaMaxTime: 5
@@ -82178,6 +82193,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1ff98ee79b0403542b3bd66cc459f0bf, type: 2}
+    - target: {fileID: 4714790467265665623, guid: 1d89eeb77c7f2714a94232811de71ef5,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1702442403}
     - target: {fileID: 8152493812715937877, guid: 1d89eeb77c7f2714a94232811de71ef5,
         type: 3}
       propertyPath: m_RootOrder
@@ -92976,8 +92996,9 @@ MonoBehaviour:
   speed: 5
   runSpeed: 10
   gravityforce: 50
-  health: 0
+  currentHealth: 0
   maxHealth: 10
+  healthBar: {fileID: 0}
   stamina: 0
   maxStamina: 10
   recoverStaminaMaxTime: 5
@@ -104576,6 +104597,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4714790467265665623, guid: 1d89eeb77c7f2714a94232811de71ef5,
+        type: 3}
+      propertyPath: cam
+      value: 
+      objectReference: {fileID: 1702442403}
     - target: {fileID: 8152493812715937877, guid: 1d89eeb77c7f2714a94232811de71ef5,
         type: 3}
       propertyPath: m_RootOrder
