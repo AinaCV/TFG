@@ -31,19 +31,21 @@ public class AnimationController : MonoBehaviour
         {
             return;
         }
+        else
+        {
+            bool forwardPressed = Input.GetKey(KeyCode.W);
+            bool leftPressed = Input.GetKey(KeyCode.A);
+            bool righhtPressed = Input.GetKey(KeyCode.D);
+            bool backwardsPressed = Input.GetKey(KeyCode.S);
+            bool runPressed = Input.GetKey(KeyCode.LeftShift);
 
-        bool forwardPressed = Input.GetKey(KeyCode.W);
-        bool leftPressed = Input.GetKey(KeyCode.A);
-        bool righhtPressed = Input.GetKey(KeyCode.D);
-        bool backwardsPressed = Input.GetKey(KeyCode.S);
-        bool runPressed = Input.GetKey(KeyCode.LeftShift);
-       
-        //Ternary operator
-        float currentMaxVelocity = runPressed ? maxRunVelocity : maxWalkVelocity;// currentMaxVelocity es la maxRun o la maxWalk dependiendo se si pulsas shift 
-                                                                                 //la primera opcion se cumple si pulso shift, si no, la segunda
+            //Ternary operator
+            float currentMaxVelocity = runPressed ? maxRunVelocity : maxWalkVelocity;// currentMaxVelocity es la maxRun o la maxWalk dependiendo se si pulsas shift 
+                                                                                     //la primera opcion se cumple si pulso shift, si no, la segunda
 
-        Animation(forwardPressed, leftPressed, righhtPressed, backwardsPressed, runPressed, currentMaxVelocity);
-        //walkTimer -= Time.deltaTime;
+            Animation(forwardPressed, leftPressed, righhtPressed, backwardsPressed, runPressed, currentMaxVelocity);
+            //walkTimer -= Time.deltaTime;
+        }
     }
 
     void Animation(bool forwardPressed, bool leftPressed, bool righhtPressed, bool backwardsPressed, bool runPressed, float currentMaxVelocity)

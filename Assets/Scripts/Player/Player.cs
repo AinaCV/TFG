@@ -21,10 +21,10 @@ public class Player : MonoBehaviour
     public bool isRunning = false;
     public bool isWalking = false;
 
-    [Header("Axis")]
-    private Vector2 input;
-    private Quaternion freeRotation;
-    private Vector3 targetDir;
+    //[Header("Axis")]
+    //private Vector2 input;
+    //private Quaternion freeRotation;
+    //private Vector3 targetDir;
 
     public static Player Instance; //tiene que ser static para la health y stamina bar
 
@@ -127,34 +127,34 @@ public class Player : MonoBehaviour
             controller.Move(movement);
         }
 
-        UpdateTargetDirection();
+        //UpdateTargetDirection();
 
-        if (input != Vector2.zero && targetDir.magnitude > 0.1f)
-        {
-            Vector3 lookDir = targetDirection.normalized;
-            freeRotation = Quaternion.LookRotation(lookDir, transform.up);
-            var diferenceRotation = freeRotation.eulerAngles.y - transform.eulerAngles.y;
-            var eulerY = transform.eulerAngles.y;
-            if (diferenceRotation < 0 || diferenceRotation > 0)
-            {
-                eulerY = freeRotation.eulerAngles.y;
-            }
-            var eurler = new Vector3(0, eulerY, 0);
+        //if (input != Vector2.zero && targetDir.magnitude > 0.1f)
+        //{
+        //    Vector3 lookDir = targetDirection.normalized;
+        //    freeRotation = Quaternion.LookRotation(lookDir, transform.up);
+        //    var diferenceRotation = freeRotation.eulerAngles.y - transform.eulerAngles.y;
+        //    var eulerY = transform.eulerAngles.y;
+        //    if (diferenceRotation < 0 || diferenceRotation > 0)
+        //    {
+        //        eulerY = freeRotation.eulerAngles.y;
+        //    }
+        //    var eurler = new Vector3(0, eulerY, 0);
 
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(eurler), runSpeed * Time.deltaTime);
-        }
+        //    transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(eurler), runSpeed * Time.deltaTime);
+        //}
 
     }
 
-    public void UpdateTargetDirection()
-    {
-        var forward = Camera.main.transform.TransformDirection(Vector3.forward);
-        forward.y = 0;
+    //public void UpdateTargetDirection()
+    //{
+    //    var forward = Camera.main.transform.TransformDirection(Vector3.forward);
+    //    forward.y = 0;
 
-        var right = Camera.main.transform.TransformDirection(Vector3.right);
+    //    var right = Camera.main.transform.TransformDirection(Vector3.right);
 
-        targetDirection = input.x * right + input.y * forward;
-    }
+    //    targetDirection = input.x * right + input.y * forward;
+    //}
 
     //void Stamina()
     //{
