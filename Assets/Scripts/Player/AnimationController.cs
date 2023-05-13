@@ -27,22 +27,24 @@ public class AnimationController : MonoBehaviour
 
     void Update()
     {
-        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        bool forwardPressed = Input.GetKey(KeyCode.W);
+        bool leftPressed = Input.GetKey(KeyCode.A);
+        bool righhtPressed = Input.GetKey(KeyCode.D);
+        bool backwardsPressed = Input.GetKey(KeyCode.S);
+        bool runPressed = Input.GetKey(KeyCode.LeftShift);
+
+        //Ternary operator
+        float currentMaxVelocity = runPressed ? maxRunVelocity : maxWalkVelocity;// currentMaxVelocity es la maxRun o la maxWalk dependiendo se si pulsas shift 
+                                                                                 //la primera opcion se cumple si pulso shift, si no, la segunda
+        if (DialogueManager.GetInstance().dialogueIsPlaying && velocityX != 0.0f && velocityZ != 0.0f)
         {
+            velocityX = 0.0f;
+            velocityZ = 0.0f;
+            //anim.Play("Idle");
             return;
         }
         else
         {
-            bool forwardPressed = Input.GetKey(KeyCode.W);
-            bool leftPressed = Input.GetKey(KeyCode.A);
-            bool righhtPressed = Input.GetKey(KeyCode.D);
-            bool backwardsPressed = Input.GetKey(KeyCode.S);
-            bool runPressed = Input.GetKey(KeyCode.LeftShift);
-
-            //Ternary operator
-            float currentMaxVelocity = runPressed ? maxRunVelocity : maxWalkVelocity;// currentMaxVelocity es la maxRun o la maxWalk dependiendo se si pulsas shift 
-                                                                                     //la primera opcion se cumple si pulso shift, si no, la segunda
-
             Animation(forwardPressed, leftPressed, righhtPressed, backwardsPressed, runPressed, currentMaxVelocity);
             //walkTimer -= Time.deltaTime;
         }
