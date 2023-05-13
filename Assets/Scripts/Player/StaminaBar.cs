@@ -5,10 +5,15 @@ using UnityEngine.UI;
 
 public class StaminaBar : MonoBehaviour
 {
-    public Image staminaBar;
+    public Slider slider;
 
-    private void Update()
+    public void SetMaxStamina(int stamina)
     {
-        staminaBar.fillAmount = (float)Player.Instance.stamina / (float)Player.Instance.maxStamina;
+        slider.maxValue = stamina;
+        slider.value = stamina;
+    }
+    public void SetStamina(int stamina)
+    {
+        slider.value = stamina;
     }
 }

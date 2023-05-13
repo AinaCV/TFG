@@ -20,6 +20,14 @@ public class Player : MonoBehaviour
     public float maxStamina = 10;
     public float recoverStaminaMaxTime = 5;
     public float recoverStamina;
+    public StaminaBar staminaBar;
+    
+    [Header("Magic")]
+    public float magic;
+    public float maxMagic = 10;
+    public float recoverMagicMaxTime = 5;
+    public float recoverMagic;
+    public MagicBar MagicBar;
 
     //Animator anim;
     [Header("Bools")]
