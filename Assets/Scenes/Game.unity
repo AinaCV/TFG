@@ -68128,16 +68128,16 @@ MonoBehaviour:
   currentHealth: 10
   maxHealth: 10
   healthBar: {fileID: 1145902907}
-  stamina: 10
+  currentStamina: 10
   maxStamina: 10
   recoverStaminaMaxTime: 5
   recoverStamina: 0
   staminaBar: {fileID: 1878413388}
-  magic: 10
+  currentMagic: 10
   maxMagic: 10
   recoverMagicMaxTime: 50
   recoverMagic: 0
-  MagicBar: {fileID: 1030261616}
+  magicBar: {fileID: 1030261616}
   isRegenerating: 0
   isRunning: 0
   isWalking: 0
@@ -93441,16 +93441,16 @@ MonoBehaviour:
   currentHealth: 0
   maxHealth: 10
   healthBar: {fileID: 0}
-  stamina: 0
+  currentStamina: 0
   maxStamina: 10
   recoverStaminaMaxTime: 5
   recoverStamina: 0
   staminaBar: {fileID: 0}
-  magic: 0
+  currentMagic: 0
   maxMagic: 10
   recoverMagicMaxTime: 5
   recoverMagic: 0
-  MagicBar: {fileID: 0}
+  magicBar: {fileID: 0}
   isRegenerating: 0
   isRunning: 0
   isWalking: 0

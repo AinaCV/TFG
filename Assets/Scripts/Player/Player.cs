@@ -16,18 +16,18 @@ public class Player : MonoBehaviour
     public HealthBar healthBar;
 
     [Header("Stamina")]
-    public float stamina;
+    public float currentStamina;
     public float maxStamina = 10;
     public float recoverStaminaMaxTime = 5;
     public float recoverStamina;
     public StaminaBar staminaBar;
-    
+
     [Header("Magic")]
-    public float magic;
+    public float currentMagic;
     public float maxMagic = 10;
     public float recoverMagicMaxTime = 5;
     public float recoverMagic;
-    public MagicBar MagicBar;
+    public MagicBar magicBar;
 
     //Animator anim;
     [Header("Bools")]
@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
     //private Quaternion freeRotation;
     //private Vector3 targetDir;
 
-    public static Player Instance; //tiene que ser static para la health y stamina bar
+    public static Player Instance; //tiene que ser static para  health, stamina y magic bar
 
     void Awake()
     {
@@ -49,36 +49,37 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        //anim = GetComponent<Animator>();
         controller = GetComponent<CharacterController>();
         currentHealth = maxHealth;
         healthBar.SetMaxHaelth(maxHealth);
-        stamina = maxStamina;
+        currentStamina = maxStamina;
+        staminaBar.SetMaxStamina(maxStamina);
+        currentMagic = maxMagic;
+        magicBar.SetMaxMagic(maxMagic);
+
     }
 
     void Update()
     {
         if (DialogueManager.GetInstance().dialogueIsPlaying)
         {
-            //anim.GetComponent<AnimationController>();
-            //anim.Play("Idle");
             return;
         }
 
-        if (stamina < maxStamina && isRegenerating)
+        if (currentStamina < maxStamina && isRegenerating)
         {
-            stamina += Time.deltaTime;
+            currentStamina += Time.deltaTime;
         }
 
-        if (stamina > maxStamina)
+        if (currentStamina > maxStamina)
         {
-            stamina = maxStamina;
+            currentStamina = maxStamina;
             isRegenerating = false;
         }
 
-        if (stamina < 0)
+        if (currentStamina < 0)
         {
-            stamina = 0;
+            currentStamina = 0;
         }
 
         if (Input.GetKey("left shift"))
@@ -94,7 +95,7 @@ public class Player : MonoBehaviour
         }
 
         Move();
-        //Stamina();
+        Stamina();
         //Death();
     }
 
@@ -167,6 +168,31 @@ public class Player : MonoBehaviour
 
     }
 
+    void Stamina()
+    {
+        if (isRunning)
+        {
+            currentStamina -= Time.deltaTime;
+            staminaBar.SetMaxStamina(currentStamina);
+
+        }
+
+        if (currentStamina <= 0)
+        {
+            isRunning = false;
+        }
+
+        if (isRunning == false)
+        {
+            recoverStamina += Time.deltaTime;
+            if (recoverStamina >= recoverStaminaMaxTime)
+            {
+                isRegenerating = true;
+                recoverStamina = 0;
+            }
+        }
+    }
+
     //public void UpdateTargetDirection()
     //{
     //    var forward = Camera.main.transform.TransformDirection(Vector3.forward);
@@ -177,28 +203,6 @@ public class Player : MonoBehaviour
     //    targetDirection = input.x * right + input.y * forward;
     //}
 
-    //void Stamina()
-    //{
-    //    if (isRunning)
-    //    {
-    //        stamina -= Time.deltaTime;
-    //    }
-
-    //    if (stamina <= 0)
-    //    {
-    //        isRunning = false;
-    //    }
-
-    //    if (isRunning == false)
-    //    {
-    //        recoverStamina += Time.deltaTime;
-    //        if (recoverStamina >= recoverStaminaMaxTime)
-    //        {
-    //            isRegenerating = true;
-    //            recoverStamina = 0;
-    //        }
-    //    }
-    //}
 
 
     //private void Death()
