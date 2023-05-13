@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        if (DialogueManager.GetInstance().dialogueIsPlaying || Inventory.Instance.inventoryOnScreen)
         {
             return;
         }

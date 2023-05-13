@@ -18,9 +18,10 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        if (DialogueManager.GetInstance().dialogueIsPlaying || Inventory.Instance.inventoryOnScreen)
         {
             Cursor.lockState = CursorLockMode.None; // para que aparezca el cursor en los dialogos
+            return;
         }
         else
         {

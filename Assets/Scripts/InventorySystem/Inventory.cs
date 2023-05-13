@@ -10,12 +10,10 @@ public class Inventory : MonoBehaviour
     public GameObject inventorySlotPrefab;
     public Transform inventoryContent;
     public GameObject inventoryPanel;
-    public GameObject healButton;
+    //public GameObject healButton;
+    public int potionCount;
     public bool inventoryOnScreen;
 
-
-
-    public int potionCount;
     public static Inventory Instance { get; private set; }
 
     private void Awake()
@@ -27,6 +25,12 @@ public class Inventory : MonoBehaviour
 
     private void Update()
     {
+        if (DialogueManager.GetInstance().dialogueIsPlaying)
+        {
+            inventoryOnScreen = false;
+            return;
+        }
+
         if (inventoryOnScreen)
         {
             inventoryPanel.SetActive(true);

@@ -36,7 +36,7 @@ public class AnimationController : MonoBehaviour
         //Ternary operator
         float currentMaxVelocity = runPressed ? maxRunVelocity : maxWalkVelocity;// currentMaxVelocity es la maxRun o la maxWalk dependiendo se si pulsas shift 
                                                                                  //la primera opcion se cumple si pulso shift, si no, la segunda
-        if (DialogueManager.GetInstance().dialogueIsPlaying && velocityX != 0.0f && velocityZ != 0.0f)
+        if (DialogueManager.GetInstance().dialogueIsPlaying && velocityX != 0.0f && velocityZ != 0.0f || Inventory.Instance.inventoryOnScreen)
         {
             velocityX = 0.0f;
             velocityZ = 0.0f;
