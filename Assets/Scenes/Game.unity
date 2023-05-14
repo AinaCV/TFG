@@ -85570,11 +85570,11 @@ PrefabInstance:
         type: 3}
       propertyPath: inkJSON
       value: 
-      objectReference: {fileID: 4900000, guid: 9d9f8fa668f22664bb6fd44dbf1dc707, type: 3}
+      objectReference: {fileID: 4900000, guid: 2d663f932c74c8244a07716c4931d44e, type: 3}
     - target: {fileID: 8820485968289118959, guid: 1d89eeb77c7f2714a94232811de71ef5,
         type: 3}
       propertyPath: m_Name
-      value: NPC (1)
+      value: NPC_02
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d89eeb77c7f2714a94232811de71ef5, type: 3}
@@ -108531,11 +108531,11 @@ PrefabInstance:
         type: 3}
       propertyPath: inkJSON
       value: 
-      objectReference: {fileID: 4900000, guid: 6f3bd2536f5d78b47bc685b7f042b180, type: 3}
+      objectReference: {fileID: 4900000, guid: 6bb8aca810038eb4382bbace3b95cd05, type: 3}
     - target: {fileID: 8820485968289118959, guid: 1d89eeb77c7f2714a94232811de71ef5,
         type: 3}
       propertyPath: m_Name
-      value: NPC
+      value: NPC_01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1d89eeb77c7f2714a94232811de71ef5, type: 3}

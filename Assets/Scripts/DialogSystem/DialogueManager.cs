@@ -81,7 +81,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterDialogueMode(TextAsset inkJSON)//coge el json con los dialogos
     {
-        currentStory = new Story(inkJSON.text);//se inicializa con la info del json
+        currentStory = new Story(inkJSON.text);//Crea la nueva historia, se inicializa con la info del json
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 

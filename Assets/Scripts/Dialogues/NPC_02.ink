@@ -1,7 +1,14 @@
 INCLUDE globals.ink
-->NPC01
 
-===NPC01
+{
+- NPC_02_haveTalked:
+-> NPC_02_Out_Of_Dialogue02
+- else:
+-> NPC_02_First_Interaction
+}
+
+=== NPC_02_First_Interaction ===
+~ NPC_02_haveTalked++
 What?
 ...
 You're looking for some guy huh.
@@ -33,4 +40,6 @@ Mmm...And why would I tell you anything? I saw what you gave to that little spit
 ===No
 -> DONE
 
+=== NPC_02_Out_Of_Dialogue02 ===
+I have nothing else to say.
 ->END

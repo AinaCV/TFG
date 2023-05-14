@@ -5,7 +5,7 @@ using Ink.Runtime;
 
 public class DialogueVariables
 {
-    public Dictionary<string, Ink.Runtime.Object> var { get; private set; }
+    public Dictionary<string, Ink.Runtime.Object> var { get; private set; }//public para referrenciar el diccionario y cambiar el curso de la historia según las decisiones
     private Story globalVariablesStory;//privado para refernciarlo en el guardado y cargado de datos
     private const string saveVarKey = "Ink_Var";
     public DialogueVariables(TextAsset loadGlobalsJSON)

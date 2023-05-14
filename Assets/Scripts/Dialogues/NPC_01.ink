@@ -4,20 +4,20 @@ VAR haveTalkedTwice = 0
 //- haveTalked >= 1 + numberOfStones == 0: //Han hablado 1 y tiene 0 piedras
     //-> NPC_02_Take_Player_Home
     
-- haveTalked://han hablado 1 vez
-    -> NPC_02_Out_Of_Dialogue
+- NPC_01_haveTalked://han hablado 1 vez
+    -> NPC_01_Out_Of_Dialogue
 
 - else: //han hablado 0 veces
-    -> NPC_02_First_Interaction
+    -> NPC_01_First_Interaction
 }
 
 {
 - haveTalkedTwice + numberOfStones < 1:
--> NPC_02_Take_Player_Home
+-> NPC_01_Take_Player_Home
 }
 
-=== NPC_02_First_Interaction
-~ haveTalked = 1
+=== NPC_01_First_Interaction
+~ NPC_01_haveTalked = 1
 Hello
 Mmm... Is that...
 IS THAT A MOONSTONE??!!
@@ -42,12 +42,10 @@ Give it to me, please, and I promise I will give you something as valuable as th
         You'll regret this...
         ->DONE
 
-===NPC_02_Out_Of_Dialogue
+===NPC_01_Out_Of_Dialogue
 What else do you want?
 ->DONE
 
-=== NPC_02_Take_Player_Home
+=== NPC_01_Take_Player_Home
 Follow me if you want your brother to live.
-->DONE
-
 ->END
