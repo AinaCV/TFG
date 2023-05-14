@@ -1,6 +1,16 @@
 INCLUDE Globals.ink
--> NPC01
-=== NPC01 ===
+
+{
+- haveTalked:
+    -> NPC_02_Out_Of_Dialogue
+
+- else:
+    -> NPC_02_First_Interaction
+}
+
+
+=== NPC_02_First_Interaction
+    ~ haveTalked ++
 Hello
 Mmm... Is that...
 IS THAT A MOONSTONE??!!
@@ -24,4 +34,9 @@ Give it to me, please, and I promise I will give you something as valuable as th
 === DintGiveMoonstone
         You'll regret this...
         ->DONE
+
+===NPC_02_Out_Of_Dialogue
+What
+->DONE
+
 ->END
