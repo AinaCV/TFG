@@ -1,6 +1,6 @@
 INCLUDE Globals.ink
--> main
-=== main ===
+-> NPC01
+=== NPC01 ===
 Hello
 Mmm... Is that...
 IS THAT A MOONSTONE??!!
@@ -14,11 +14,13 @@ Give it to me, please, and I promise I will give you something as valuable as th
         -> GiveMoonstone
         **[I'm noy giving it away.]
         -> DintGiveMoonstone
-        
+
 === GiveMoonstone
         Lady, you'll make me cry of happiness!! JAJAJAJA. 
         Bye.
+        ~ numberOfStones = numberOfStones - 1
         ->DONE
+        
 === DintGiveMoonstone
         You'll regret this...
         ->DONE
