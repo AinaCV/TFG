@@ -39,10 +39,10 @@ Mmm...And why would I tell you anything? I saw what you gave to that little spit
 ~ NPC_02_haveTalked = 2
 Are you sure yoy don't want to give me something?
 Jejeje...
-    *Here
+    *[Here]
     ->GiveKey 
     ->DONE
-    *Shut up
+    *[Shut up]
     ->DontGiveKey
     ->DONE
 
@@ -56,7 +56,7 @@ It wasn't so difficult, was it? Jajajaja.
 ->DONE
     
 === DontGiveKey ===
-    ~ NPC_02_haveTalked = 1
+~ NPC_02_haveTalked = 1
 Tsk...You little rascall.
 ->DONE
     
