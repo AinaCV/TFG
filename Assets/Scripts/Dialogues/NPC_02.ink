@@ -1,14 +1,15 @@
 INCLUDE globals.ink
 
 {
-- NPC_02_haveTalked:
+- NPC_02_haveTalked == 2:
 -> NPC_02_Out_Of_Dialogue02
+- NPC_02_haveTalked == 1:
+-> SecondChance
 - else:
 -> NPC_02_First_Interaction
 }
 
 === NPC_02_First_Interaction ===
-~ NPC_02_haveTalked++
 What?
 ...
 You're looking for some guy huh.
@@ -17,7 +18,7 @@ You're looking for some guy huh.
 *[Yes]
 -> Yes
 
- ===Yes
+ === Yes ===
  { 
 - numberOfStones: //se cumple la condición si el numero no es 0 = no ha dado la piedra
 Mmm...What is that shiny thing in your poket?
@@ -29,17 +30,34 @@ Mmm...And why would I tell you anything? I saw what you gave to that little spit
     ->GiveKey 
     **[No]
     ->DontGiveKey
-
-    ===GiveKey
-    It wasn't so difficult, was it? Jajajaja.
     ->DONE
-    ===DontGiveKey
-    Tsk...You little rascall.
-    ->DONE
-
-===No
+    
+=== No ===
 -> DONE
+
+=== SecondChance ===
+~ NPC_02_haveTalked = 2
+Are you sure yoy don't want to give me something?
+Jejeje...
+    *Here
+    ->GiveKey 
+    ->DONE
+    *Shut up
+    ->DontGiveKey
+    ->DONE
 
 === NPC_02_Out_Of_Dialogue02 ===
 I have nothing else to say.
+->DONE
+
+=== GiveKey ===
+~ NPC_02_haveTalked = 2
+It wasn't so difficult, was it? Jajajaja.
+->DONE
+    
+=== DontGiveKey ===
+    ~ NPC_02_haveTalked = 1
+Tsk...You little rascall.
+->DONE
+    
 ->END
