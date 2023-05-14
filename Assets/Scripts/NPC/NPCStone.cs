@@ -4,26 +4,25 @@ using UnityEngine;
 
 public class NPCStone : MonoBehaviour
 {
-    [SerializeField] private Color defaultColor = Color.white;
-    [SerializeField] private Color redColor = Color.red;
-    private MeshRenderer meshRenderer;
+    SkinnedMeshRenderer meshRenderer;
+
     void Start()
     {
-        meshRenderer = GetComponentInChildren<MeshRenderer>();
+        meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
     void Update()
     {
-        string stoneCount = ((Ink.Runtime.StringValue)DialogueManager.GetInstance().GetVariableState("1")).value;
+        string stoneCount = ((Ink.Runtime.StringValue)DialogueManager.GetInstance().GetVariableState("hasGivenStone")).value;
 
         switch (stoneCount)
         {
-            case "1":
-                meshRenderer.material.color = defaultColor;
+            case "true":
+                meshRenderer.material.color = Color.white;
                 //do something
                 break;
-            case "0":
-                meshRenderer.material.color = redColor;
+            case "false":
+                meshRenderer.material.color = Color.red;
                 //do something
                 break;
             default:
