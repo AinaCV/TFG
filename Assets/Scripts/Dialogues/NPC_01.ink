@@ -1,10 +1,10 @@
 INCLUDE Globals.ink
-VAR haveTalkedTwice = 0
+VAR haveTalkedTwice = "0"
 {
 //- haveTalked >= 1 + numberOfStones == 0: //Han hablado 1 y tiene 0 piedras
     //-> NPC_02_Take_Player_Home
     
-- NPC_01_haveTalked://han hablado 1 vez
+- NPC_01_haveTalked == "1"://han hablado 1 vez
     -> NPC_01_Out_Of_Dialogue
 
 - else: //han hablado 0 veces
@@ -12,12 +12,12 @@ VAR haveTalkedTwice = 0
 }
 
 {
-- haveTalkedTwice + numberOfStones < 1:
+- haveTalkedTwice == "0" + numberOfStones == "0":
 -> NPC_01_Take_Player_Home
 }
 
 === NPC_01_First_Interaction
-~ NPC_01_haveTalked = 1
+~ NPC_01_haveTalked = "1"
 Hello
 Mmm... Is that...
 IS THAT A MOONSTONE??!!
@@ -35,7 +35,7 @@ Give it to me, please, and I promise I will give you something as valuable as th
 === GiveMoonstone
         Lady, you'll make me cry of happiness!! JAJAJAJA. 
         Bye.
-        ~ numberOfStones = numberOfStones - 1
+        ~ numberOfStones = "0"
         ->DONE
         
 === DintGiveMoonstone

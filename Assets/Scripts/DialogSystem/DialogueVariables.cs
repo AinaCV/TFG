@@ -40,7 +40,7 @@ public class DialogueVariables
 
     public void StartListening(Story story)
     {
-        VariablesToStory(story);//importante que se llame a este metodo antes del observador 
+        VariablesToStory(story);//importante que se carguen las variables antes del observador 
         story.variablesState.variableChangedEvent += VarChanged;
     }
     public void StopListening(Story story)
@@ -49,14 +49,14 @@ public class DialogueVariables
     }
     private void VarChanged(string name, Ink.Runtime.Object value)
     {
-        if (var.ContainsKey(name))
+        if (var.ContainsKey(name))//contains key para comprobar si ya está en el diccionario
         {
-            var.Remove(name);
+            var.Remove(name); 
             var.Add(name, value);
         }
     }
 
-    void VariablesToStory(Story story)
+    void VariablesToStory(Story story)//carga las variables en los archivos ink
     {
         foreach (KeyValuePair<string, Ink.Runtime.Object> var in var)
         {

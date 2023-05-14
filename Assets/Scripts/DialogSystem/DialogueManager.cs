@@ -197,12 +197,12 @@ public class DialogueManager : MonoBehaviour
     public Ink.Runtime.Object GetVariableState(string varName)
     {
         Ink.Runtime.Object varValue = null;
-        dialogueVar.var.TryGetValue(varName, out varValue);
+        dialogueVar.var.TryGetValue(varName, out varValue); //ref diccionary
         if (varValue == null)
         {
             Debug.LogWarning("Ink Variable null:" + varName);
         }
-        return varValue;
+        return varValue; //return si existe
     }
 
     public void OnApplicationQuit()

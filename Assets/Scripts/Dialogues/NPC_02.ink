@@ -1,9 +1,9 @@
 INCLUDE globals.ink
 
 {
-- NPC_02_haveTalked == 2:
+- NPC_02_haveTalked == "2":
 -> NPC_02_Out_Of_Dialogue02
-- NPC_02_haveTalked == 1:
+- NPC_02_haveTalked == "1":
 -> SecondChance
 - else:
 -> NPC_02_First_Interaction
@@ -36,7 +36,7 @@ Mmm...And why would I tell you anything? I saw what you gave to that little spit
 -> DONE
 
 === SecondChance ===
-~ NPC_02_haveTalked = 2
+~ NPC_02_haveTalked = "2"
 Are you sure yoy don't want to give me something?
 Jejeje...
     *[Here]
@@ -51,12 +51,12 @@ I have nothing else to say.
 ->DONE
 
 === GiveKey ===
-~ NPC_02_haveTalked = 2
+~ NPC_02_haveTalked = "2"
 It wasn't so difficult, was it? Jajajaja.
 ->DONE
     
 === DontGiveKey ===
-~ NPC_02_haveTalked = 1
+~ NPC_02_haveTalked = "1"
 Tsk...You little rascall.
 ->DONE
     
