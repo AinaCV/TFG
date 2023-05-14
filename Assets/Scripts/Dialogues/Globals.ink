@@ -4,8 +4,8 @@ VAR NPC_02_haveTalked = 0
 VAR hasGivenStone = "true"
 
 { 
-- numberOfStones==0: 
-~hasGivenStone = "true"
-- else: 
+- numberOfStones == 1: 
 ~hasGivenStone = "false"
+- else: 
+~hasGivenStone = "true"
 }
