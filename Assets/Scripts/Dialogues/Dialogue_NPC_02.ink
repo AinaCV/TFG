@@ -43,7 +43,7 @@ Give it to me, please, and I promise I will give you something as valuable as th
         ->DONE
 
 ===NPC_02_Out_Of_Dialogue
-What
+What else do you want?
 ->DONE
 
 === NPC_02_Take_Player_Home
