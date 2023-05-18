@@ -36,6 +36,12 @@ Give it to me, please, and I promise I will give you something as valuable as th
         Lady, you'll make me cry of happiness!! JAJAJAJA. 
         Bye.
         ~ numberOfStones--
+        { 
+        - numberOfStones == 1: 
+        ~hasGivenStone = "false"
+        - else: 
+        ~hasGivenStone = "true"
+        }
         ->DONE
         
 === DintGiveMoonstone
