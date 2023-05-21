@@ -43,6 +43,7 @@ public class PlayerSaveData : MonoBehaviour
                 iData.icon = slot.itemIcon;
                 iData.name = slot.itemName;
                 iData.count = slot.itemCount;
+                iData.ID = slot.itemID;
 
                 SaveGameManager.currentSaveData.itemsList.Add(iData);
             }

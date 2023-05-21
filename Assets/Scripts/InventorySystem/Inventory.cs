@@ -11,8 +11,8 @@ public class Inventory : MonoBehaviour
     public Transform inventoryContent;
     public GameObject inventoryPanel;
     //public GameObject healButton;
-    public int potionCount;
     public bool inventoryOnScreen;
+    public bool hasPendant;
 
     public static Inventory Instance { get; private set; }
 
@@ -21,6 +21,10 @@ public class Inventory : MonoBehaviour
         Instance = this; //el inventario se inicializa en un awake
         inventorySlots = new List<InventorySlot>();
         UpdateInventory(); //las cosas acceden al inventario despúes de inicializarse
+    }
+    private void Start()
+    {
+        hasPendant = false;
     }
 
     private void Update()
@@ -46,6 +50,11 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             ChangeInventoryState();
+        }
+
+        if (InventorySlot.Instance.itemID == 1) //si tenemos el objeto de gieon en el inventario
+        {
+            hasPendant = true;
         }
     }
 

@@ -7,23 +7,23 @@ public class InternDialogueTrigger : MonoBehaviour
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
 
-    private bool playerInInternDialogue;
+    public bool activateInternDialogue;
 
     private void Awake()
     {
-        playerInInternDialogue = false;
+        activateInternDialogue = false;
     }
 
     private void Update()
     {
-        if (playerInInternDialogue && !InternDialogue.Instance().dialogueIsPlaying)
+        if (activateInternDialogue && !InternDialogue.Instance().dialogueIsPlaying)
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                InternDialogue.Instance().EnterDialogueMode(inkJSON);
-            }
+            InternDialogue.Instance().EnterDialogueMode(inkJSON);
         }
-            //playerInInternDialogue = true;
-            //playerInInternDialogue = false;
+
+        if (Inventory.Instance.hasPendant)
+        {
+            activateInternDialogue = true;
+        }
     }
 }

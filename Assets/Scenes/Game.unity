@@ -63508,6 +63508,7 @@ MonoBehaviour:
     name: Guideon's pendant
     icon: {fileID: 21300000, guid: affeade9874cf2347abb155e8d0db4d8, type: 3}
     count: 1
+    ID: 1
   keyPressed: 0
 --- !u!1001 &1263107200
 PrefabInstance:
@@ -64362,7 +64363,6 @@ MonoBehaviour:
     type: 3}
   inventoryContent: {fileID: 440418081}
   inventoryPanel: {fileID: 255335177}
-  potionCount: 3
   inventoryOnScreen: 0
 --- !u!1001 &1290827301
 PrefabInstance:
@@ -70702,6 +70702,7 @@ MonoBehaviour:
   deceleration: 2
   maxWalkVelocity: 0.5
   maxRunVelocity: 2
+  walkTimer: 0
   runTimer: 0
 --- !u!95 &1415855279
 Animator:

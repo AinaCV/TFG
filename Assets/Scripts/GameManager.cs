@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!menuReference.activeInHierarchy)
@@ -36,7 +36,5 @@ public class GameManager : MonoBehaviour
                 menuReference.SetActive(false);
             }
         }
-
-        
     }
 }
