@@ -11,7 +11,7 @@ public class AnimationController : MonoBehaviour
     public float deceleration = 2.0f;
     public float maxWalkVelocity = 0.5f;
     public float maxRunVelocity = 2.0f;
-    float coolDown = 1f;
+    //float coolDown = 1f;
     //public float walkTimer;
     public float runTimer;
     //const float coolDownWalk = 1f;
