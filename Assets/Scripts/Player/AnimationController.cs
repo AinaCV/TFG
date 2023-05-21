@@ -12,10 +12,10 @@ public class AnimationController : MonoBehaviour
     public float maxWalkVelocity = 0.5f;
     public float maxRunVelocity = 2.0f;
     //float coolDown = 1f;
-    //public float walkTimer;
+    public float walkTimer;
     public float runTimer;
-    //const float coolDownWalk = 1f;
-    //const float coolDownRun = 1F;
+    const float coolDownWalk = 1f;
+    const float coolDownRun = 1F;
 
     //public AudioClip walk;
     //public AudioClip run;
@@ -36,44 +36,43 @@ public class AnimationController : MonoBehaviour
         }
         else
         {
-        bool forwardPressed = Input.GetKey(KeyCode.W);
-        bool leftPressed = Input.GetKey(KeyCode.A);
-        bool righhtPressed = Input.GetKey(KeyCode.D);
-        bool backwardsPressed = Input.GetKey(KeyCode.S);
-        bool runPressed = Input.GetKey(KeyCode.LeftShift);
+            bool forwardPressed = Input.GetKey(KeyCode.W);
+            bool leftPressed = Input.GetKey(KeyCode.A);
+            bool righhtPressed = Input.GetKey(KeyCode.D);
+            bool backwardsPressed = Input.GetKey(KeyCode.S);
+            bool runPressed = Input.GetKey(KeyCode.LeftShift);
 
-        //Ternary operator
-        float currentMaxVelocity = runPressed ? maxRunVelocity : maxWalkVelocity;// currentMaxVelocity es la maxRun o la maxWalk dependiendo se si pulsas shift 
-                                                                                 //la primera opcion se cumple si pulso shift, si no, la segunda
+            //Ternary operator
+            float currentMaxVelocity = runPressed ? maxRunVelocity : maxWalkVelocity;// currentMaxVelocity es la maxRun o la maxWalk dependiendo se si pulsas shift 
+                                                                                     //la primera opcion se cumple si pulso shift, si no, la segunda
             Animation(forwardPressed, leftPressed, righhtPressed, backwardsPressed, runPressed, currentMaxVelocity);
-            //walkTimer -= Time.deltaTime;
+            walkTimer -= Time.deltaTime;
         }
     }
 
     void Animation(bool forwardPressed, bool leftPressed, bool righhtPressed, bool backwardsPressed, bool runPressed, float currentMaxVelocity)
     {
 
-        //if (Player.Instance.stamina <= 0)
-        //{
-        currentMaxVelocity = maxWalkVelocity;
-        //}
+        if (Player.Instance.currentStamina <= 0)
+        {
+            currentMaxVelocity = maxWalkVelocity;
+        }
 
-        //if (forwardPressed || leftPressed || righhtPressed || backwardsPressed)
-        //{
-        //    //if (walkTimer <= 0)
-        //    //{
-        //    //    AudioManager.Instance.PlayAudio(walk, 0.5f);
-        //    //    walkTimer = coolDownWalk;
-        //}
-        //else if (runPressed)
-        //{
-        //    if (runTimer <= 0)
-        //    {
-        //        AudioManager.Instance.PlayAudio(run, 1f);
-        //        runTimer = coolDownRun;
-        //    }
-        //}
-
+        if (forwardPressed || leftPressed || righhtPressed || backwardsPressed)
+        {
+            //if (walkTimer <= 0)
+            //{
+            //    AudioManager.Instance.PlayAudio(walk, 0.5f);
+            walkTimer = coolDownWalk;
+        }
+        else if (runPressed)
+        {
+            if (runTimer <= 0)
+            {
+                //AudioManager.Instance.PlayAudio(run, 1f);
+                runTimer = coolDownRun;
+            }
+        }
 
         if (forwardPressed && velocityZ < currentMaxVelocity) //walk
         {
@@ -187,38 +186,6 @@ public class AnimationController : MonoBehaviour
         {
             velocityX = currentMaxVelocity;
         }
-
-        //if (jumpPressed)
-        //{
-        //    anim.SetBool("isJumping", true);
-        //    if (jumpTimer <= 0)
-        //    {
-        //        //AudioManager.Instance.PlayAudio(jump, 1f);
-        //        jumpTimer = coolDown;
-        //    }
-        //}
-        //else
-        //{
-        //    anim.SetBool("isJumping", false);
-        //}
-
-        //if (Input.GetMouseButtonDown(0) && this.GetComponent<Player>().stamina > 0) //Attack
-        //{
-        //    anim.SetBool("Attack", true);
-        //}
-        //else
-        //{
-        //    anim.SetBool("Attack", false);
-        //}
-
-        //if (Input.GetMouseButton(1) && this.GetComponent<Player>().stamina > 0) //Block
-        //{
-        //    anim.SetBool("isBlocking", true);
-        //}
-        //else
-        //{
-        //    anim.SetBool("isBlocking", false);
-        //}
         anim.SetFloat("Velocity Z", velocityZ);
         anim.SetFloat("Velocity X", velocityX);
     }
