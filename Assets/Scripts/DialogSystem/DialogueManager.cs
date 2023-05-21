@@ -156,11 +156,11 @@ public class DialogueManager : MonoBehaviour
         //escribe letra por letra
         foreach (char letter in line.ToCharArray())
         {
-            //if (Input.GetKey(KeyCode.Space))
-            //{
-            //    dialogueText.text = line;
-            //    break;//para romper el loop si el player no quiere esperar a que termine 
-            //}
+            if (Input.GetKey(KeyCode.Space))
+            {
+                dialogueText.text = line;
+                break;//para romper el loop si el player no quiere esperar a que termine 
+            }
 
             dialogueText.text += letter;
             yield return new WaitForSeconds(typingSpeed);
@@ -187,7 +187,7 @@ public class DialogueManager : MonoBehaviour
 
     public void MakeChoice(int choiceIndex)//Para los botones
     {
-        if (canContinueToNextLine)
+        if (canContinueToNextLine && !Input.GetKey(KeyCode.Space)) //Apaño para que no seleccione una decisión al darle al espacio
         {
             currentStory.ChooseChoiceIndex(choiceIndex);
             ContinueStory();
