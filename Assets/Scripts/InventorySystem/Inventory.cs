@@ -52,10 +52,10 @@ public class Inventory : MonoBehaviour
             ChangeInventoryState();
         }
 
-        if (InventorySlot.Instance.itemID == 1) //si tenemos el objeto de gieon en el inventario
-        {
-            hasPendant = true;
-        }
+        //if (InventorySlot.Instance.itemID == 1) //si tenemos el objeto de gieon en el inventario
+        //{
+        //    hasPendant = true;
+        //}
     }
 
     public bool AddToInventory(ItemData itemToAdd, int amountToAdd)
@@ -75,7 +75,7 @@ public class Inventory : MonoBehaviour
         inventorySlots.Add(new InventorySlot(itemToAdd));
         return true;
     }
-    public void RemoveFromInventory(string itemToRemove)
+    public void RemoveFromInventory(int itemID)
     {
         //int i = 0;
 
@@ -96,7 +96,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < inventorySlots.Count; i++)
         {
-            if (inventorySlots[i].itemName == itemToRemove)
+            if (inventorySlots[i].itemID == itemID)
             {
                 inventorySlots[i].itemCount = (inventorySlots[i].itemCount - 1);
                 if (inventorySlots[i].itemCount <= 0)

@@ -15,7 +15,7 @@ public class NPCStone : MonoBehaviour
 
     void Update()
     {
-        bool stoneCount = bool.Parse(((Ink.Runtime.StringValue)DialogueManager.GetInstance().GetVariableState("hasGivenStone")).value);
+        bool hasGivenStone = bool.Parse(((Ink.Runtime.StringValue)DialogueManager.GetInstance().GetVariableState("hasGivenStone")).value);
 
         //switch (stoneCount)
         //{
@@ -32,17 +32,18 @@ public class NPCStone : MonoBehaviour
         //        break;
         //}
 
-        if(stoneCount)
+        if(hasGivenStone)
         {
             meshRenderer.material = mat1;
+            Inventory.Instance.RemoveFromInventory(1);
         }
-        else if(!stoneCount)
+        else if(!hasGivenStone)
         {
             meshRenderer.material= mat2 ;
         }
         else
         {
-            Debug.LogWarning("stone count not handled by switch stament: " + stoneCount);
+            Debug.LogWarning("stone count not handled by switch stament: " + hasStone);
         }
     }
 }

@@ -26,6 +26,7 @@ public class ItemPickUp : MonoBehaviour
             Inventory.Instance.AddToInventory(itemData, itemData.count);
             Inventory.Instance.UpdateInventory();
             this.gameObject.SetActive(false);
+            Debug.LogWarning("WTF");
             keyPressed = false;
         }
     }
