@@ -7,7 +7,6 @@ public class NPCStone : MonoBehaviour
     SkinnedMeshRenderer meshRenderer;
     public Material mat1, mat2;
 
-
     void Start()
     {
         meshRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
@@ -39,11 +38,11 @@ public class NPCStone : MonoBehaviour
         }
         else if(!hasGivenStone)
         {
-            meshRenderer.material= mat2 ;
+            meshRenderer.material= mat2;
         }
         else
         {
-            Debug.LogWarning("stone count not handled by switch stament: " + hasStone);
+            Debug.LogWarning("stone count not handled by switch stament: " + hasGivenStone);
         }
     }
 }

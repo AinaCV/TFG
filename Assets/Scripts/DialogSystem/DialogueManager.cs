@@ -27,6 +27,9 @@ public class DialogueManager : MonoBehaviour
 
     private Story currentStory; //using Ink.Runtime;
 
+    //public Animator anim;
+    //private AnimationController playerAnim;
+
     public bool dialogueIsPlaying { get; private set; }//read only
 
     public bool canContinueToNextLine = false;
@@ -54,6 +57,7 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
+        //playerAnim = Player.Instance.GetComponent<AnimationController>();
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
 
@@ -81,6 +85,8 @@ public class DialogueManager : MonoBehaviour
 
     public void EnterDialogueMode(TextAsset inkJSON)//coge el json con los dialogos
     {
+        //playerAnim.enabled = false;
+        //anim.Play("Idle");
         currentStory = new Story(inkJSON.text);//Crea la nueva historia, se inicializa con la info del json
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
