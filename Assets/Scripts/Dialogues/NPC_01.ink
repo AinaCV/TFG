@@ -1,7 +1,7 @@
 INCLUDE Globals.ink
 VAR haveTalkedTwice = 0
 {
-//- haveTalked >= 1 + numberOfStones == 0: //Han hablado 1 y tiene 0 piedras
+//- haveTalked >= 1 + numberOfItems == 0: //Han hablado 1 y tiene 0 piedras
     //-> NPC_02_Take_Player_Home
     
 - NPC_01_haveTalked://han hablado 1 vez
@@ -12,7 +12,7 @@ VAR haveTalkedTwice = 0
 }
 
 {
-- haveTalkedTwice + numberOfStones <1:
+- haveTalkedTwice + numberOfItems <1:
 -> NPC_01_Take_Player_Home
 }
 
@@ -35,12 +35,12 @@ Give it to me, please, and I promise I will give you something as valuable as th
 === GiveMoonstone
         Lady, you'll make me cry of happiness!! JAJAJAJA. 
         Bye.
-        ~ numberOfStones--
+        ~ numberOfItems--
         { 
-        - numberOfStones == 1: 
-        ~hasGivenStone = "false"
+        - numberOfItems == 1: 
+        ~hasGivenItem = "false"
         - else: 
-        ~hasGivenStone = "true"
+        ~numberOfItems = "true"
         }
         ->DONE
         
