@@ -20,7 +20,7 @@ You're looking for some guy huh.
 
  === Yes ===
  { 
-- numberOfStones: //se cumple la condición si el numero no es 0 = no ha dado la piedra
+- numberOfItems: //se cumple la condición si el numero no es 0 = no ha dado la piedra
 Mmm...What is that shiny thing in your poket?
 Do you want to make a deal? I'll tell you what I know just for that little shiny key...
 -else://si tien 0 piedras

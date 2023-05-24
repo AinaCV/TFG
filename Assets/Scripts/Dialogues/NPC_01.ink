@@ -12,7 +12,7 @@ VAR haveTalkedTwice = 0
 }
 
 {
-- haveTalkedTwice + numberOfStones <1:
+- haveTalkedTwice + numberOfItems <1:
 -> NPC_01_Take_Player_Home
 }
 
@@ -23,28 +23,28 @@ Mmm... Is that...
 IS THAT A MOONSTONE??!!
 Give it to me, please, and I promise I will give you something as valuable as that little precious stone...    
     * [Here, I don't even want it]
-      -> GiveMoonstone
+      -> GiveItem
     * [Who are you?]
      I am Drugh, I own a little and moitsy cave nearby.
      If you give that treasure... You are welcome in.
         **[Ok, take it.]
-        -> GiveMoonstone
+        -> GiveItem
         **[I'm noy giving it away.]
-        -> DintGiveMoonstone
+        -> DintGiveItem
 
-=== GiveMoonstone
+=== GiveItem
         Lady, you'll make me cry of happiness!! JAJAJAJA. 
         Bye.
-        ~ numberOfStones--
+        ~ hasItems = true
         { 
-        - numberOfStones == 1: 
-        ~hasGivenStone = "false"
+        -numberOfItems > 1: 
+        ~hasGivenItem = "false"
         - else: 
-        ~hasGivenStone = "true"
+        ~hasGivenItem = "true"
         }
         ->DONE
         
-=== DintGiveMoonstone
+=== DintGiveItem
         You'll regret this...
         ->DONE
 
