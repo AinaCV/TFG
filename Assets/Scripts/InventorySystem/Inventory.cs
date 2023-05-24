@@ -75,7 +75,7 @@ public class Inventory : MonoBehaviour
         inventorySlots.Add(new InventorySlot(itemToAdd));
         return true;
     }
-    public void RemoveFromInventory(string itemToRemove)
+    public void RemoveFromInventory(int ID)
     {
         //int i = 0;
 
@@ -96,7 +96,7 @@ public class Inventory : MonoBehaviour
 
         for (int i = 0; i < inventorySlots.Count; i++)
         {
-            if (inventorySlots[i].itemName == itemToRemove)
+            if (inventorySlots[i].itemID == ID)
             {
                 inventorySlots[i].itemCount = (inventorySlots[i].itemCount - 1);
                 if (inventorySlots[i].itemCount <= 0)
