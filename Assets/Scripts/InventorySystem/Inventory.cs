@@ -52,10 +52,10 @@ public class Inventory : MonoBehaviour
             ChangeInventoryState();
         }
 
-        if (InventorySlot.Instance.itemID == 1) //si tenemos el objeto de gieon en el inventario
-        {
-            hasPendant = true;
-        }
+        //if (InventorySlot.Instance.itemID == 1) //si tenemos el objeto de gieon en el inventario
+        //{
+        //    hasPendant = true;
+        //}
     }
 
     public bool AddToInventory(ItemData itemToAdd, int amountToAdd)

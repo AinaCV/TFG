@@ -56,7 +56,6 @@ public class Player : MonoBehaviour
         staminaBar.SetMaxStamina(maxStamina);
         currentMagic = maxMagic;
         magicBar.SetMaxMagic(maxMagic);
-
     }
 
     void Update()
