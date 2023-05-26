@@ -34,10 +34,9 @@ Give it to me, please, and I promise I will give you something as valuable as th
         **[I'm noy giving it away.]
         ->DintGiveItem
 - else:
-    what?
-    ->DONE
+    What?
 }
-
+    ->DONE
 
 === GiveItem
         Lady, you'll make me cry of happiness!! JAJAJAJA. 

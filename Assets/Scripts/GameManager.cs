@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     //public GameObject menuReference;
     public static GameManager instance; //static--> para los demás componentes puedan acceder al GM
     public bool hasItemsInInventory;
+    public int numberOfItems;
+
     void Awake()
     {
         if (instance == null)
@@ -49,26 +51,24 @@ public class GameManager : MonoBehaviour
 
         if (hasItemsInInventory)
         {
-            int numberOfItems = ((Ink.Runtime.IntValue)DialogueManager.GetInstance().GetVariableState("numberOfItems")).value;
-
-            switch (numberOfItems)
+            numberOfItems = ((Ink.Runtime.IntValue)DialogueManager.GetInstance().GetVariableState("numberOfItems")).value;
+            foreach (InventorySlot slot in i.inventorySlots)
             {
-                case > 1:
-                    foreach (InventorySlot slot in i.inventorySlots)
-                    {
-                        numberOfItems++;
-                    }
-                    break;
-                case <= 0:
-                    foreach (InventorySlot slot in i.inventorySlots)
-                    {
-                        numberOfItems--;
-                    }
-                    break;
-                default:
-                    Debug.LogWarning("items count not handled by switch stament: " + numberOfItems);
-                    break;
+                numberOfItems += 1;
             }
+
+            //switch (numberOfItems)
+            //{
+            //    case > 1:
+
+            //        break;
+            //    case <= 0:
+            //        
+            //        break;
+            //    default:
+            //        Debug.LogWarning("items count not handled by switch stament: " + numberOfItems);
+            //        break;
+            //}
         }
     }
 }
