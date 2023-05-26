@@ -8,8 +8,8 @@ public class GameManager : MonoBehaviour
 {
     //public GameObject menuReference;
     public static GameManager instance; //static--> para los demás componentes puedan acceder al GM
-    public bool hasItemsInInventory;
-    public int numberOfItems;
+    //public bool hasItemsInInventory;
+    //public int numberOfItems;
 
     void Awake()
     {
@@ -40,35 +40,23 @@ public class GameManager : MonoBehaviour
         //}
 
         Inventory i = FindObjectOfType<Inventory>();
-        if (i.inventorySlots.Count > 0)
+        int numberOfItems = ((Ink.Runtime.IntValue)DialogueManager.GetInstance().GetVariableState("numberOfItems")).value;
+        bool hasItemsInInventory = bool.Parse(((Ink.Runtime.StringValue)DialogueManager.GetInstance().GetVariableState("hasItemsinInventory")).value);
+
+        foreach (InventorySlot slot in i.inventorySlots)
+        {
+            numberOfItems = slot.itemCount;
+            return;
+        }
+
+        if (numberOfItems > 0)
         {
             hasItemsInInventory = true;
+
         }
-        else if (i.inventorySlots.Count <= 0)
+        else if (numberOfItems <= 0)
         {
             hasItemsInInventory = false;
-        }
-
-        if (hasItemsInInventory)
-        {
-            numberOfItems = ((Ink.Runtime.IntValue)DialogueManager.GetInstance().GetVariableState("numberOfItems")).value;
-            foreach (InventorySlot slot in i.inventorySlots)
-            {
-                numberOfItems += 1;
-            }
-
-            //switch (numberOfItems)
-            //{
-            //    case > 1:
-
-            //        break;
-            //    case <= 0:
-            //        
-            //        break;
-            //    default:
-            //        Debug.LogWarning("items count not handled by switch stament: " + numberOfItems);
-            //        break;
-            //}
         }
     }
 }

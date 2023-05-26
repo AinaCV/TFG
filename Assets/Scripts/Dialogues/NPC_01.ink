@@ -1,4 +1,13 @@
 INCLUDE Globals.ink
+{
+-numberOfItems: //si no es 0
+ ~hasItemsinInventory = "true"
+->NPC_01_Second_Interaction
+-else:
+~hasItemsinInventory = "false"
+->NPC_01_First_Interaction
+}
+
 VAR haveTalkedTwice = 0
 {
 //- haveTalked >= 1 + numberOfStones == 0: //Han hablado 1 y tiene 0 piedras
@@ -17,9 +26,11 @@ VAR haveTalkedTwice = 0
 }
 
 === NPC_01_First_Interaction
-{
-- numberOfItems:
-~ NPC_01_haveTalked++
+What?
+->DONE
+
+=== NPC_01_Second_Interaction
+ ~ NPC_01_haveTalked++
 Hello
 Mmm... Is that...
 IS THAT A MOONSTONE??!!
@@ -33,21 +44,18 @@ Give it to me, please, and I promise I will give you something as valuable as th
         -> GiveItem
         **[I'm noy giving it away.]
         ->DintGiveItem
-- else:
-    What?
-}
-    ->DONE
-
+->DONE
+   
 === GiveItem
         Lady, you'll make me cry of happiness!! JAJAJAJA. 
         Bye.
         ~hasGivenItem = "true"
-        ->DONE
+->DONE
         
 === DintGiveItem
         You'll regret this...
        ~hasGivenItem = "false"
-        ->DONE
+->DONE
 
 ===NPC_01_Out_Of_Dialogue
 What else do you want?

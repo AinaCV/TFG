@@ -16,18 +16,31 @@ public class NPCStone : MonoBehaviour
     {
         bool hasGivenItem = bool.Parse(((Ink.Runtime.StringValue)DialogueManager.GetInstance().GetVariableState("hasGivenItem")).value);
 
-        if(!hasGivenItem)
-        {
-            meshRenderer.material= mat2;
-        }
-        else if(hasGivenItem)
+        if(hasGivenItem)
         {
             Inventory.Instance.RemoveFromInventory(1);
             meshRenderer.material = mat1;
+        }
+        else if(!hasGivenItem)
+        {
+            meshRenderer.material= mat2;
         }
         else
         {
             Debug.LogWarning("stone count not handled by switch stament: " + hasGivenItem);
         }
+
+        //switch (numberOfItems)
+        //{
+        //    case > 1 //true:
+        //      do something
+        //        break;
+        //    case <= 0 //false:
+        //      do something  
+        //        break;
+        //    default:
+        //        Debug.LogWarning("items count not handled by switch stament: " + numberOfItems);
+        //        break;
+        //}
     }
 }
