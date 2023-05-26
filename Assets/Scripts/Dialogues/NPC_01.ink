@@ -17,6 +17,8 @@ VAR haveTalkedTwice = 0
 }
 
 === NPC_01_First_Interaction
+{
+- numberOfItems:
 ~ NPC_01_haveTalked++
 Hello
 Mmm... Is that...
@@ -31,6 +33,11 @@ Give it to me, please, and I promise I will give you something as valuable as th
         -> GiveItem
         **[I'm noy giving it away.]
         ->DintGiveItem
+- else:
+    what?
+    ->DONE
+}
+
 
 === GiveItem
         Lady, you'll make me cry of happiness!! JAJAJAJA. 
