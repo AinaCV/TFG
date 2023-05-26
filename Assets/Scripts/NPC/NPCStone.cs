@@ -14,35 +14,20 @@ public class NPCStone : MonoBehaviour
 
     void Update()
     {
-        bool hasGivenStone = bool.Parse(((Ink.Runtime.StringValue)DialogueManager.GetInstance().GetVariableState("hasGivenStone")).value);
+        bool hasGivenItem = bool.Parse(((Ink.Runtime.StringValue)DialogueManager.GetInstance().GetVariableState("hasGivenItem")).value);
 
-        //switch (stoneCount)
-        //{
-        //    case true:
-        //        meshRenderer.material.color = Color.white;
-        //        //do something
-        //        break;
-        //    case false:
-        //        meshRenderer.material.color = Color.red;
-        //        //do something
-        //        break;
-        //    default:
-        //        Debug.LogWarning("stone count not handled by switch stament: " + stoneCount);
-        //        break;
-        //}
-
-        if(hasGivenStone)
-        {
-            meshRenderer.material = mat1;
-            Inventory.Instance.RemoveFromInventory(1);
-        }
-        else if(!hasGivenStone)
+        if(!hasGivenItem)
         {
             meshRenderer.material= mat2;
         }
+        else if(hasGivenItem)
+        {
+            Inventory.Instance.RemoveFromInventory(1);
+            meshRenderer.material = mat1;
+        }
         else
         {
-            Debug.LogWarning("stone count not handled by switch stament: " + hasGivenStone);
+            Debug.LogWarning("stone count not handled by switch stament: " + hasGivenItem);
         }
     }
 }

@@ -30,22 +30,17 @@ Give it to me, please, and I promise I will give you something as valuable as th
         **[Ok, take it.]
         -> GiveItem
         **[I'm noy giving it away.]
-        -> DintGiveItem
+        ->DintGiveItem
 
 === GiveItem
         Lady, you'll make me cry of happiness!! JAJAJAJA. 
         Bye.
-        ~ hasItems = true
-        { 
-        -numberOfItems > 1: 
-        ~hasGivenItem = "false"
-        - else: 
         ~hasGivenItem = "true"
-        }
         ->DONE
         
 === DintGiveItem
         You'll regret this...
+       ~hasGivenItem = "false"
         ->DONE
 
 ===NPC_01_Out_Of_Dialogue

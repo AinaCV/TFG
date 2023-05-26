@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject menuReference;
+    //public GameObject menuReference;
     public static GameManager instance; //static--> para los demás componentes puedan acceder al GM
-
+    public bool hasItemsInInventory;
     void Awake()
     {
         if (instance == null)
@@ -25,15 +25,49 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Escape))
+        //if (Input.GetKeyDown(KeyCode.Escape))
+        //{
+        //    if (!menuReference.activeInHierarchy)
+        //    {
+        //        menuReference.SetActive(true);
+        //    }
+        //    else if (menuReference.activeInHierarchy)
+        //    {
+        //        menuReference.SetActive(false);
+        //    }
+        //}
+
+        Inventory i = FindObjectOfType<Inventory>();
+        if (i.inventorySlots.Count > 0)
         {
-            if (!menuReference.activeInHierarchy)
+            hasItemsInInventory = true;
+        }
+        else if (i.inventorySlots.Count <= 0)
+        {
+            hasItemsInInventory = false;
+        }
+
+        if (hasItemsInInventory)
+        {
+            int numberOfItems = ((Ink.Runtime.IntValue)DialogueManager.GetInstance().GetVariableState("numberOfItems")).value;
+
+            switch (numberOfItems)
             {
-                menuReference.SetActive(true);
-            }
-            else if (menuReference.activeInHierarchy)
-            {
-                menuReference.SetActive(false);
+                case > 1:
+                    foreach (InventorySlot slot in i.inventorySlots)
+                    {
+                        numberOfItems++;
+                    }
+                    break;
+                case <= 0:
+                    foreach (InventorySlot slot in i.inventorySlots)
+                    {
+                        numberOfItems--;
+                    }
+                    break;
+                default:
+                    Debug.LogWarning("items count not handled by switch stament: " + numberOfItems);
+                    break;
             }
         }
     }

@@ -20,10 +20,10 @@ You're looking for some guy huh.
 
  === Yes ===
  { 
-- numberOfItems: //se cumple la condición si el numero no es 0 = no ha dado la piedra
+- hasGivenItem: // si ha dado un item
 Mmm...What is that shiny thing in your poket?
 Do you want to make a deal? I'll tell you what I know just for that little shiny key...
--else://si tien 0 piedras
+-else://si no ha dado nada
 Mmm...And why would I tell you anything? I saw what you gave to that little spiteful guy... You could give me something like that too...
 }
     **[Ok...]
