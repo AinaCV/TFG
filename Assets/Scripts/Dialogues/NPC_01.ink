@@ -1,33 +1,40 @@
 INCLUDE Globals.ink
+
 {
--numberOfItems: //si no es 0
- ~hasItemsinInventory = "true"
-->NPC_01_Second_Interaction
+ - NPC_01_haveTalked + hasItemsinInventory:
+->NPC_01_Second_Interaction //Wait!
+
 -else:
-~hasItemsinInventory = "false"
-->NPC_01_First_Interaction
+->NPC_01_First_Interaction //You don't have anything
 }
 
 VAR haveTalkedTwice = 0
-{
-//- haveTalked >= 1 + numberOfStones == 0: //Han hablado 1 y tiene 0 piedras
-    //-> NPC_02_Take_Player_Home
-    
-- NPC_01_haveTalked://han hablado 1 vez
-    -> NPC_01_Out_Of_Dialogue
-
-- else: //han hablado 0 veces
-    -> NPC_01_First_Interaction
-}
-
 {
 - haveTalkedTwice + numberOfItems <1:
 -> NPC_01_Take_Player_Home
 }
 
 === NPC_01_First_Interaction
-What?
+~ NPC_01_haveTalked++
+You don't have anything interesting...   
+    * [I'm looking for my brother, he's...]
+      -> Uninterested
+    * [...]
+     What are you looking at? Leave already.
+     -> DONE
+     
+=== Uninterested ===
+So what?
 ->DONE
+
+=== Negotation ===
+        I haven't, there aren't many humans that dare to enter these wood, and the ones that do, are ususally idiots...
+        But wait! We can make a deal. 
+        If you give that I promise to return the favor, who knows, maybe you'll need something from me in the future...
+        *[Ok]
+        ->GiveItem
+        *[I'll pass]
+        ->DintGiveItem->DONE
 
 === NPC_01_Second_Interaction
  ~ NPC_01_haveTalked++
@@ -58,7 +65,7 @@ Give it to me, please, and I promise I will give you something as valuable as th
 ->DONE
 
 ===NPC_01_Out_Of_Dialogue
-What else do you want?
+Something shiny...
 ->DONE
 
 === NPC_01_Take_Player_Home
