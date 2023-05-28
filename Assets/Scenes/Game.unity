@@ -19907,6 +19907,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   typingSpeed: 0.04
   loadGlobalsJSON: {fileID: 4900000, guid: f698dc3c30f60084389012360fff531c, type: 3}
+  itemCount: 0
   dialoguePanel: {fileID: 317390617}
   dialogueText: {fileID: 1992436734}
   continueIcon: {fileID: 1402557111}
@@ -25945,8 +25946,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2498d19b669877f438f34eaad82fab04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasItemsInInventory: 0
-  numberOfItems: 0
 --- !u!4 &487405728
 Transform:
   m_ObjectHideFlags: 0
@@ -51807,11 +51806,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1023511622}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df8d97b464547a34496f215f7b55f09d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  meshRenderer: {fileID: 0}
   mat1: {fileID: 2100000, guid: 998e24d2552d0b6469dec923f6aed0ff, type: 2}
   mat2: {fileID: 2100000, guid: 1f62d7e9ed3ce17419cbf8685503c09b, type: 2}
 --- !u!4 &1026058892 stripped

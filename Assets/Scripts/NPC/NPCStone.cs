@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPCStone : MonoBehaviour
 {
-    SkinnedMeshRenderer meshRenderer;
+    public SkinnedMeshRenderer meshRenderer;
     public Material mat1, mat2;
 
     void Start()
@@ -14,7 +14,7 @@ public class NPCStone : MonoBehaviour
 
     void Update()
     {
-        GiveItem();
+        //GiveItem();
     }
 
     void GiveItem()

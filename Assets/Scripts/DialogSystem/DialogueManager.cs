@@ -13,6 +13,8 @@ public class DialogueManager : MonoBehaviour
     [Header("Load Globals JSON")]
     [SerializeField] private TextAsset loadGlobalsJSON;
 
+    [SerializeField] private int itemCount;
+
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
 
@@ -28,8 +30,6 @@ public class DialogueManager : MonoBehaviour
     private Story currentStory; //using Ink.Runtime;
 
     Inventory inventory;
-
-
     public bool dialogueIsPlaying { get; private set; }//read only
 
     public bool canContinueToNextLine = false;
@@ -85,9 +85,28 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public void ChangeInventoryVar(Story story)
+    void ChangeItemBoolVar()
     {
-        int itemCount = ((IntValue)GetInstance().GetVariableState("itemCount")).value;
+        bool hasGivenItem = bool.Parse(((StringValue)GetInstance().GetVariableState("hasGivenItem")).value);
+
+        if (hasGivenItem)
+        {
+            itemCount--;
+            Inventory.Instance.RemoveFromInventory(1); //argumento int = itemID
+        }
+        //else if (!hasGivenItem)
+        //{
+        //    story.variablesState["itemCount"] = itemCount;
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("stone count not handled by switch stament: " + hasGivenItem);
+        //}
+    }
+
+    void ChangeItemCountVar(Story story)
+    {
+        itemCount = ((IntValue)GetInstance().GetVariableState("itemCount")).value;
         if (Inventory.Instance.inventorySlots.Count > 0)
         {
             itemCount = Inventory.Instance.inventorySlots.Count;
@@ -99,7 +118,7 @@ public class DialogueManager : MonoBehaviour
                 story.variablesState["itemCount"] = itemCount;
                 break;
             case <= 0: //false
-                Debug.Log("itemCount:" + itemCount);
+                story.variablesState["itemCount"] = 0;
                 break;
         }
     }
@@ -111,7 +130,8 @@ public class DialogueManager : MonoBehaviour
             currentStory = new Story(inkJSON.text);//Crea la nueva historia, se inicializa con la info del json
             dialogueIsPlaying = true;
             dialoguePanel.SetActive(true);
-            ChangeInventoryVar(currentStory);
+            ChangeItemCountVar(currentStory);
+            ChangeItemBoolVar();
             ContinueStory();
         }
         else
@@ -123,7 +143,6 @@ public class DialogueManager : MonoBehaviour
             dialogueVar.StartListening(currentStory);
             ContinueStory();
         }
-
     }
 
     IEnumerator ExitDialogueMode()//Es una corrutina porque comparte el imput con otras funciones, así hay un pequeño espacio de tiempo y no se solapan

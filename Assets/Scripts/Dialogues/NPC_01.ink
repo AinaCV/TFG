@@ -45,15 +45,16 @@ Wait! You, what is that fancy thing you have there?
 ->DONE
    
 === GiveItem
+~hasGivenItem = "true" //changes NPC2 dialogue
 ~NPC_01_haveTalked++
+~itemCount--
 Lady, you'll make me cry of happiness!! 
 Bye.
-~hasGivenItem = "true" //changes NPC2 dialogue
 ->DONE
         
 === DontGiveItem
-You'll regret this...
 ~hasGivenItem = "false"
+You'll regret this...
 ->DONE
 
 ===NPC_01_Out_Of_Dialogue
