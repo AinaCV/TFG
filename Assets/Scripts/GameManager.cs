@@ -1,3 +1,4 @@
+using Ink.Runtime;
 using SaveLoadSystem;
 using System;
 using System.Collections;
@@ -9,8 +10,8 @@ public class GameManager : MonoBehaviour
     //public GameObject menuReference;
     public static GameManager instance; //static--> para los demás componentes puedan acceder al GM
     //public bool hasItemsInInventory;
-    //public int numberOfItems;
-
+    public int numberOfItems;
+    Story story;
     void Awake()
     {
         if (instance == null)
@@ -38,25 +39,5 @@ public class GameManager : MonoBehaviour
         //        menuReference.SetActive(false);
         //    }
         //}
-
-        Inventory i = FindObjectOfType<Inventory>();
-        int numberOfItems = ((Ink.Runtime.IntValue)DialogueManager.GetInstance().GetVariableState("numberOfItems")).value;
-        bool hasItemsInInventory = bool.Parse(((Ink.Runtime.StringValue)DialogueManager.GetInstance().GetVariableState("hasItemsinInventory")).value);
-
-        foreach (InventorySlot slot in i.inventorySlots)
-        {
-            numberOfItems = slot.itemCount;
-            return;
-        }
-
-        if (numberOfItems > 0)
-        {
-            hasItemsInInventory = true;
-
-        }
-        else if (numberOfItems <= 0)
-        {
-            hasItemsInInventory = false;
-        }
     }
 }

@@ -27,8 +27,8 @@ public class DialogueManager : MonoBehaviour
 
     private Story currentStory; //using Ink.Runtime;
 
-    //public Animator anim;
-    //private AnimationController playerAnim;
+    Inventory inventory;
+
 
     public bool dialogueIsPlaying { get; private set; }//read only
 
@@ -69,6 +69,8 @@ public class DialogueManager : MonoBehaviour
             choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
             index++; //incrementa el indice despues de cada loop
         }
+
+        inventory = FindObjectOfType<Inventory>();
     }
 
     private void Update()
@@ -82,18 +84,28 @@ public class DialogueManager : MonoBehaviour
             ContinueStory();
         }
     }
-
+    
     public void EnterDialogueMode(TextAsset inkJSON)//coge el json con los dialogos
     {
-        //playerAnim.enabled = false;
-        //anim.Play("Idle");
+        if (inventory.inventorySlots.Count > 0)
+        {
+            currentStory = new Story(inkJSON.text);//Crea la nueva historia, se inicializa con la info del json
+            dialogueIsPlaying = true;
+            dialoguePanel.SetActive(true);
+
+            dialogueVar.ChangeInventoryVar(currentStory);
+            ContinueStory();
+        }
+        else
+        {
         currentStory = new Story(inkJSON.text);//Crea la nueva historia, se inicializa con la info del json
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
         dialogueVar.StartListening(currentStory);
-
         ContinueStory();
+        }
+
     }
 
     IEnumerator ExitDialogueMode()//Es una corrutina porque comparte el imput con otras funciones, así hay un pequeño espacio de tiempo y no se solapan
@@ -211,11 +223,11 @@ public class DialogueManager : MonoBehaviour
         return varValue; //return si existe
     }
 
-    public void OnApplicationQuit()
-    {
-        if (dialogueVar != null)//check :)
-        {
-            dialogueVar.SaveVariables();
-        }
-    }
+    //public void OnApplicationQuit()
+    //{
+    //    if (dialogueVar != null)//check :)
+    //    {
+    //        dialogueVar.SaveVariables();
+    //    }
+    //}
 }

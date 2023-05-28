@@ -8,6 +8,7 @@ public class DialogueVariables
     public Dictionary<string, Ink.Runtime.Object> var { get; private set; }//public para referrenciar el diccionario y cambiar el curso de la historia según las decisiones
     private Story globalVariablesStory;//privado para refernciarlo en el guardado y cargado de datos
     private const string saveVarKey = "Ink_Var";
+    public Inventory i;
     public DialogueVariables(TextAsset loadGlobalsJSON)
     {
         globalVariablesStory = new Story(loadGlobalsJSON.text); //Crea la historia
@@ -47,11 +48,12 @@ public class DialogueVariables
     {
         story.variablesState.variableChangedEvent -= VarChanged;
     }
-    private void VarChanged(string name, Ink.Runtime.Object value)
+
+    void VarChanged(string name, Ink.Runtime.Object value)
     {
         if (var.ContainsKey(name))//contains key para comprobar si ya está en el diccionario
         {
-            var.Remove(name); 
+            var.Remove(name);
             var.Add(name, value);
         }
     }
@@ -61,6 +63,27 @@ public class DialogueVariables
         foreach (KeyValuePair<string, Ink.Runtime.Object> var in var)
         {
             story.variablesState.SetGlobal(var.Key, var.Value);
+        }
+    }
+    public void ChangeInventoryVar(Story story)
+    {
+        int itemCount = ((IntValue)DialogueManager.GetInstance().GetVariableState("itemCount")).value;
+        foreach (InventorySlot slot in Inventory.Instance.inventorySlots)
+        {
+            itemCount = slot.itemCount;
+        }
+
+        switch (itemCount)
+        {
+            case >= 1: //true
+                story.variablesState["itemCount"] = itemCount;
+                break;
+            case <= 0: //false
+                Debug.Log("FALSE");
+                break;
+            default:
+                Debug.LogWarning("items count not handled by switch stament: " + itemCount);
+                break;
         }
     }
 }
