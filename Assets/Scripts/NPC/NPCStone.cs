@@ -14,16 +14,21 @@ public class NPCStone : MonoBehaviour
 
     void Update()
     {
+        GiveItem();
+    }
+
+    void GiveItem()
+    {
         bool hasGivenItem = bool.Parse(((Ink.Runtime.StringValue)DialogueManager.GetInstance().GetVariableState("hasGivenItem")).value);
 
-        if(hasGivenItem)
+        if (hasGivenItem)
         {
-            Inventory.Instance.RemoveFromInventory(1);
+            Inventory.Instance.RemoveFromInventory(1); //argumento int = itemID
             meshRenderer.material = mat1;
         }
-        else if(!hasGivenItem)
+        else if (!hasGivenItem)
         {
-            meshRenderer.material= mat2;
+            meshRenderer.material = mat2;
         }
         else
         {

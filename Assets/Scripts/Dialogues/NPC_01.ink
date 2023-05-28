@@ -48,7 +48,7 @@ Wait! You, what is that fancy thing you have there?
 ~NPC_01_haveTalked++
 Lady, you'll make me cry of happiness!! 
 Bye.
-~hasGivenItem = "true" //Test to change the color in unity
+~hasGivenItem = "true" //changes NPC2 dialogue
 ->DONE
         
 === DontGiveItem

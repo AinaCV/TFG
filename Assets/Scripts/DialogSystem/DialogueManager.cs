@@ -84,7 +84,26 @@ public class DialogueManager : MonoBehaviour
             ContinueStory();
         }
     }
-    
+
+    public void ChangeInventoryVar(Story story)
+    {
+        int itemCount = ((IntValue)GetInstance().GetVariableState("itemCount")).value;
+        if (Inventory.Instance.inventorySlots.Count > 0)
+        {
+            itemCount = Inventory.Instance.inventorySlots.Count;
+        }
+
+        switch (itemCount)
+        {
+            case >= 1: //true
+                story.variablesState["itemCount"] = itemCount;
+                break;
+            case <= 0: //false
+                Debug.Log("itemCount:" + itemCount);
+                break;
+        }
+    }
+
     public void EnterDialogueMode(TextAsset inkJSON)//coge el json con los dialogos
     {
         if (inventory.inventorySlots.Count > 0)
@@ -92,18 +111,17 @@ public class DialogueManager : MonoBehaviour
             currentStory = new Story(inkJSON.text);//Crea la nueva historia, se inicializa con la info del json
             dialogueIsPlaying = true;
             dialoguePanel.SetActive(true);
-
-            dialogueVar.ChangeInventoryVar(currentStory);
+            ChangeInventoryVar(currentStory);
             ContinueStory();
         }
         else
         {
-        currentStory = new Story(inkJSON.text);//Crea la nueva historia, se inicializa con la info del json
-        dialogueIsPlaying = true;
-        dialoguePanel.SetActive(true);
+            currentStory = new Story(inkJSON.text);//Crea la nueva historia, se inicializa con la info del json
+            dialogueIsPlaying = true;
+            dialoguePanel.SetActive(true);
 
-        dialogueVar.StartListening(currentStory);
-        ContinueStory();
+            dialogueVar.StartListening(currentStory);
+            ContinueStory();
         }
 
     }

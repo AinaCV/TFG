@@ -65,25 +65,4 @@ public class DialogueVariables
             story.variablesState.SetGlobal(var.Key, var.Value);
         }
     }
-    public void ChangeInventoryVar(Story story)
-    {
-        int itemCount = ((IntValue)DialogueManager.GetInstance().GetVariableState("itemCount")).value;
-        foreach (InventorySlot slot in Inventory.Instance.inventorySlots)
-        {
-            itemCount = slot.itemCount;
-        }
-
-        switch (itemCount)
-        {
-            case >= 1: //true
-                story.variablesState["itemCount"] = itemCount;
-                break;
-            case <= 0: //false
-                Debug.Log("FALSE");
-                break;
-            default:
-                Debug.LogWarning("items count not handled by switch stament: " + itemCount);
-                break;
-        }
-    }
 }

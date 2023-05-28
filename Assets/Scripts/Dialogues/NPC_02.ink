@@ -20,10 +20,10 @@ You're looking for some guy huh.
 
  === Yes ===
  { 
-- hasGivenItem: // si ha dado un item
+- hasGivenItem: // si no ha dado un item
 Mmm...What is that shiny thing in your poket?
 Do you want to make a deal? I'll tell you what I know just for that little shiny key...
--else://si no ha dado nada
+-else if hasGivenItem = "true"://si ha dado nada
 Mmm...And why would I tell you anything? I saw what you gave to that little spiteful guy... You could give me something like that too...
 }
     **[Ok...]
