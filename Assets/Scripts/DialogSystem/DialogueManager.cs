@@ -85,23 +85,23 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void ChangeItemBoolVar()
+    void ChangeItemBoolVar(Story story)
     {
-        bool hasGivenItem = bool.Parse(((StringValue)GetInstance().GetVariableState("hasGivenItem")).value);
+        bool hasGivenItem = ((BoolValue)GetInstance().GetVariableState("hasGivenItem")).value;
 
         if (hasGivenItem)
         {
             itemCount--;
             Inventory.Instance.RemoveFromInventory(1); //argumento int = itemID
         }
-        //else if (!hasGivenItem)
-        //{
-        //    story.variablesState["itemCount"] = itemCount;
-        //}
-        //else
-        //{
-        //    Debug.LogWarning("stone count not handled by switch stament: " + hasGivenItem);
-        //}
+        else if (!hasGivenItem)
+        {
+            Debug.Log("False");
+        }
+        else
+        {
+            Debug.LogWarning("stone count not handled by switch stament: " + hasGivenItem);
+        }
     }
 
     void ChangeItemCountVar(Story story)
@@ -131,7 +131,7 @@ public class DialogueManager : MonoBehaviour
             dialogueIsPlaying = true;
             dialoguePanel.SetActive(true);
             ChangeItemCountVar(currentStory);
-            ChangeItemBoolVar();
+            ChangeItemBoolVar(currentStory);
             ContinueStory();
         }
         else
