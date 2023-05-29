@@ -5,7 +5,7 @@ using Ink.Runtime;
 
 public class DialogueVariables
 {
-    public Dictionary<string, Ink.Runtime.Object> varDictionary { get; private set; }//public para referrenciar el diccionario y cambiar el curso de la historia según las decisiones
+    public Dictionary<string, Ink.Runtime.Object> var { get; private set; }//public para referrenciar el diccionario y cambiar el curso de la historia según las decisiones
     private Story globalVariablesStory;//privado para refernciarlo en el guardado y cargado de datos
     private const string saveVarKey = "Ink_Var";
     public Inventory i;
@@ -20,11 +20,11 @@ public class DialogueVariables
         }
 
         //inicializa el diccionario
-        varDictionary = new Dictionary<string, Ink.Runtime.Object>();
+        var = new Dictionary<string, Ink.Runtime.Object>();
         foreach (string name in globalVariablesStory.variablesState)
         {
             Ink.Runtime.Object value = globalVariablesStory.variablesState.GetVariableWithName(name);
-            varDictionary.Add(name, value);
+            var.Add(name, value);
             Debug.Log("Initialized global dialogue variable:" + name + "=" + value);
         }
     }
@@ -51,16 +51,16 @@ public class DialogueVariables
 
     void VarChanged(string name, Ink.Runtime.Object value)
     {
-        if (varDictionary.ContainsKey(name))//contains key para comprobar si ya está en el diccionario
+        if (var.ContainsKey(name))//contains key para comprobar si ya está en el diccionario
         {
-            varDictionary.Remove(name);
-            varDictionary.Add(name, value);
+            var.Remove(name);
+            var.Add(name, value);
         }
     }
 
     void VariablesToStory(Story story)//carga las variables en los archivos ink
     {
-        foreach (KeyValuePair<string, Ink.Runtime.Object> var in varDictionary)
+        foreach (KeyValuePair<string, Ink.Runtime.Object> var in var)
         {
             story.variablesState.SetGlobal(var.Key, var.Value);
         }
