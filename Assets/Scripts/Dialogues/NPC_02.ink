@@ -20,18 +20,17 @@ You're looking for some guy huh.
 
  === Yes ===
  { 
- - !hasGivenItem && itemCount <= 0:
-Then go look for this
-- !hasGivenItem && itemCount >= 1: 
+- hasGivenItem: // si no ha dado un item
 Mmm...What is that shiny thing in your poket?
-Do you want to make a deal? I'll tell you what I know just for that little shiny thing...
-- hasGivenItem:
+Do you want to make a deal? I'll tell you what I know just for that little shiny key...
+-else if hasGivenItem = "true"://si ha dado nada
 Mmm...And why would I tell you anything? I saw what you gave to that little spiteful guy... You could give me something like that too...
 }
     **[Ok...]
-    ->GiveItem 
+    ->GiveKey 
     **[No]
-    ->DontGiveItem
+    ->DontGiveKey
+    ->DONE
     
 === No ===
 -> DONE
@@ -41,22 +40,22 @@ Mmm...And why would I tell you anything? I saw what you gave to that little spit
 Are you sure yoy don't want to give me something?
 Jejeje...
     *[Here]
-    ->GiveItem 
+    ->GiveKey 
     ->DONE
     *[Shut up]
-    ->DontGiveItem
+    ->DontGiveKey
     ->DONE
 
 === NPC_02_Out_Of_Dialogue02 ===
 I have nothing else to say.
 ->DONE
 
-=== GiveItem ===
+=== GiveKey ===
 ~ NPC_02_haveTalked = 2
 It wasn't so difficult, was it? Jajajaja.
 ->DONE
     
-=== DontGiveItem ===
+=== DontGiveKey ===
 ~ NPC_02_haveTalked = 1
 Tsk...You little rascall.
 ->DONE
