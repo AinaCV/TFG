@@ -1,5 +1,6 @@
 INCLUDE Globals.ink
 
+
 {
  -itemCount > 0: //if true 
 ->NPC_01_Second_Interaction //You have an item
@@ -45,7 +46,8 @@ Wait! You, what is that fancy thing you have there?
 ->DONE
    
 === GiveItem
-~hasGivenItem = true//changes NPC2 dialogue
+~hasGivenItem(true)//changes NPC2 dialogue
+~removeFromInventory(1)
 ~NPC_01_haveTalked++
 ~itemCount--
 Lady, you'll make me cry of happiness!! 

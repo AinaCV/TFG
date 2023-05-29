@@ -1,1 +1,1 @@
-﻿{"inkVersion":20,"root":[["\n",["done",{"#f":5,"#n":"g-0"}],null],"done",{"global decl":["ev",0,{"VAR=":"itemCount"},0,{"VAR=":"NPC_01_haveTalked"},0,{"VAR=":"NPC_02_haveTalked"},false,{"VAR=":"hasGivenItem"},"/ev","end",null],"#f":1}],"listDefs":{}}
+﻿{"inkVersion":20,"root":[["\n",["done",{"#f":5,"#n":"g-0"}],null],"done",{"global decl":["ev",0,{"VAR=":"itemCount"},0,{"VAR=":"NPC_01_haveTalked"},0,{"VAR=":"NPC_02_haveTalked"},"/ev","end",null],"#f":1}],"listDefs":{}}

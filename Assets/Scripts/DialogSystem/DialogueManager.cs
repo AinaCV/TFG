@@ -34,6 +34,8 @@ public class DialogueManager : MonoBehaviour
 
     public bool canContinueToNextLine = false;
 
+    public bool hasGivenItem = false;
+
     private Coroutine displayTextCoroutine;
 
     private DialogueVariables dialogueVar;
@@ -131,7 +133,15 @@ public class DialogueManager : MonoBehaviour
             dialogueIsPlaying = true;
             dialoguePanel.SetActive(true);
             ChangeItemCountVar(currentStory);
-            ChangeItemBoolVar(currentStory);
+            //ChangeItemBoolVar(currentStory);
+            currentStory.BindExternalFunction("removeFromInventory", (int removeItemID) =>
+            {
+                Inventory.Instance.RemoveFromInventory(1);
+            });
+            currentStory.BindExternalFunction("hasGivenItem", (bool switchBool) =>
+            {
+                hasGivenItem = true;
+            });
             ContinueStory();
         }
         else
@@ -141,6 +151,14 @@ public class DialogueManager : MonoBehaviour
             dialoguePanel.SetActive(true);
 
             dialogueVar.StartListening(currentStory);
+            currentStory.BindExternalFunction("removeFromInventory", (int removeItemID) =>
+            {
+                Inventory.Instance.RemoveFromInventory(1);
+            });
+            currentStory.BindExternalFunction("hasGivenItem", (bool switchBool) =>
+            {
+                hasGivenItem = true;
+            });
             ContinueStory();
         }
     }
@@ -150,6 +168,9 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
 
         dialogueVar.StopListening(currentStory);
+        currentStory.UnbindExternalFunction("hasGivenItem");
+        currentStory.UnbindExternalFunction("removeFromInventory");
+
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = ""; // dejamos el texto en un string vacia por si acaso
