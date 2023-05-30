@@ -10,9 +10,9 @@ public class MenuController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void PlayClick()
+    public void PlayButton()
     {
-        SceneManager.LoadScene("Map");
+        SceneManager.LoadScene("Game");
     }
 
     public void ExitGame()
@@ -25,8 +25,8 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    public void CreditsButton()
-    {
-        SceneManager.LoadScene("Credits");
-    }
+    //public void NewGamebutton()
+    //{
+    //    SceneManager.LoadScene("Game");
+    //}
 }
