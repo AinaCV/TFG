@@ -12,7 +12,7 @@ public class Inventory : MonoBehaviour
     public GameObject inventoryPanel;
     //public GameObject healButton;
     public bool inventoryOnScreen;
-    public bool hasPendant;
+    public bool hasGuideonsItem = false;
 
     public static Inventory Instance { get; private set; }
 
@@ -21,10 +21,6 @@ public class Inventory : MonoBehaviour
         Instance = this; //el inventario se inicializa en un awake
         inventorySlots = new List<InventorySlot>();
         UpdateInventory(); //las cosas acceden al inventario despúes de inicializarse
-    }
-    private void Start()
-    {
-        hasPendant = false;
     }
 
     private void Update()
@@ -52,16 +48,11 @@ public class Inventory : MonoBehaviour
             ChangeInventoryState();
         }
 
-        //if (InventorySlot.Instance.itemID == 1) //si tenemos el objeto de gieon en el inventario
-        //{
-        //    hasPendant = true;
-        //}
     }
 
     public bool AddToInventory(ItemData itemToAdd, int amountToAdd)
     {
         int i = 0;
-
         while (i < inventorySlots.Count)
         {
             if (inventorySlots[i].itemName == itemToAdd.name)
@@ -129,6 +120,21 @@ public class Inventory : MonoBehaviour
             refer.image.sprite = inventorySlots[i].itemIcon;
             refer.itemNameText.text = inventorySlots[i].itemName;
             refer.itemCountText.text = inventorySlots[i].itemCount.ToString();
+        }
+    }
+
+    public void CheckID()
+    {
+        for (int i = 0; i < inventorySlots.Count; i++) //recorre cada elemento de la lista
+        {
+            if (inventorySlots[i].itemID == 1) //si tenemos el objeto de gieon en el inventario
+            {
+                hasGuideonsItem = true;
+            }
+            else
+            {
+                hasGuideonsItem = false;
+            }
         }
     }
 }

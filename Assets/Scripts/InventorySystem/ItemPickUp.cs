@@ -25,6 +25,7 @@ public class ItemPickUp : MonoBehaviour
         {
             Inventory.Instance.AddToInventory(itemData, itemData.count);
             Inventory.Instance.UpdateInventory();
+            Inventory.Instance.CheckID();
             this.gameObject.SetActive(false);
             keyPressed = false;
         }

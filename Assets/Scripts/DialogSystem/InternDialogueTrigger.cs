@@ -4,26 +4,59 @@ using UnityEngine;
 
 public class InternDialogueTrigger : MonoBehaviour
 {
+    [Header("Visual Cue")] //icono para hablara con el npc
+    [SerializeField] private GameObject visualCue;
+
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
 
-    public bool activateInternDialogue;
+    //public bool activateInternDialogue;
+    public bool playerInTrigger;
 
     private void Awake()
     {
-        activateInternDialogue = false;
+        //activateInternDialogue = false;
+        playerInTrigger = false;
+        visualCue.SetActive(false);
     }
 
     private void Update()
     {
-        if (activateInternDialogue && !InternDialogue.Instance().dialogueIsPlaying)
+        if (playerInTrigger && !InternDialogue.Instance().dialogueIsPlaying)
         {
-            InternDialogue.Instance().EnterDialogueMode(inkJSON);
+            visualCue.SetActive(true);
+            if (Inventory.Instance.hasGuideonsItem)
+            {
+                //activateInternDialogue = true;
+                InternDialogue.Instance().EnterDialogueMode(inkJSON);
+            }
+        }
+        else
+        {
+            visualCue.SetActive(false);
         }
 
-        if (Inventory.Instance.hasPendant)
+        //if (activateInternDialogue && !InternDialogue.Instance().dialogueIsPlaying)
+        //{
+        //}
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Player player = other.GetComponent<Player>();
+        if (player != null)
         {
-            activateInternDialogue = true;
+            playerInTrigger = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        Player player = other.GetComponent<Player>();
+        if (player != null)
+        {
+            playerInTrigger = false;
         }
     }
 }

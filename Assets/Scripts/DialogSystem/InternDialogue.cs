@@ -10,8 +10,8 @@ public class InternDialogue : MonoBehaviour
     [Header("Parameters")]
     [SerializeField] private float typingSpeed = 0.04f;
 
-    [Header("Load Globals JSON")]
-    [SerializeField] private TextAsset loadGlobalsJSON;
+    //[Header("Load Globals JSON")]
+    //[SerializeField] private TextAsset loadGlobalsJSON;
 
     [Header("Dialogue UI")]
     [SerializeField] private GameObject dialoguePanel;
@@ -20,7 +20,7 @@ public class InternDialogue : MonoBehaviour
 
     [SerializeField] private GameObject continueIcon;
 
-    private Story currentStory; //using Ink.Runtime;
+    private Story lilithCurrentStory; //using Ink.Runtime;
 
     public bool dialogueIsPlaying { get; private set; }//read only
 
@@ -28,7 +28,7 @@ public class InternDialogue : MonoBehaviour
 
     private Coroutine displayTextCoroutine;
 
-    private DialogueVariables dialogueVar;
+    //private DialogueVariables dialogueVar;
 
     private static InternDialogue instance;
 
@@ -40,7 +40,7 @@ public class InternDialogue : MonoBehaviour
         }
         instance = this;
 
-        dialogueVar = new DialogueVariables(loadGlobalsJSON);
+        //dialogueVar = new DialogueVariables(loadGlobalsJSON);
     }
     public static InternDialogue Instance()
     {
@@ -59,7 +59,7 @@ public class InternDialogue : MonoBehaviour
         {
             return;
         }
-        if (currentStory.currentChoices.Count == 0 && canContinueToNextLine && Input.GetMouseButtonDown(0))
+        if (canContinueToNextLine && Input.GetMouseButtonDown(0))
         {
             ContinueStory();
         }
@@ -67,11 +67,11 @@ public class InternDialogue : MonoBehaviour
 
     public void EnterDialogueMode(TextAsset inkJSON)//coge el json con los dialogos
     {
-        currentStory = new Story(inkJSON.text);//Crea la nueva historia, se inicializa con la info del json
+        lilithCurrentStory = new Story(inkJSON.text);//Crea la nueva historia, se inicializa con la info del json
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
 
-        dialogueVar.StartListening(currentStory);
+        //dialogueVar.StartListening(currentStory);
 
         ContinueStory();
     }
@@ -80,7 +80,7 @@ public class InternDialogue : MonoBehaviour
     {
         yield return new WaitForSeconds(0.2f);
 
-        dialogueVar.StopListening(currentStory);
+        //dialogueVar.StopListening(currentStory);
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
         dialogueText.text = ""; // dejamos el texto en un string vacia por si acaso
@@ -88,7 +88,7 @@ public class InternDialogue : MonoBehaviour
 
     void ContinueStory()
     {
-        if (currentStory.canContinue)
+        if (lilithCurrentStory.canContinue)
         {
             //set the text
             //dialogueText.text = currentStory.Continue();
@@ -96,7 +96,7 @@ public class InternDialogue : MonoBehaviour
             {
                 StopCoroutine(displayTextCoroutine);
             }
-            displayTextCoroutine = StartCoroutine(DisplayText(currentStory.Continue()));//siguiente linea de dialogo
+            displayTextCoroutine = StartCoroutine(DisplayText(lilithCurrentStory.Continue()));//siguiente linea de dialogo
             //Si hay elección el dialogo activo, display 
         }
         else
@@ -128,22 +128,22 @@ public class InternDialogue : MonoBehaviour
         continueIcon.SetActive(true);
     }
 
-    public Ink.Runtime.Object GetVariableState(string varName)
-    {
-        Ink.Runtime.Object varValue = null;
-        dialogueVar.var.TryGetValue(varName, out varValue); //ref diccionary
-        if (varValue == null)
-        {
-            Debug.LogWarning("Ink Variable null:" + varName);
-        }
-        return varValue; //return si existe
-    }
+    //public Ink.Runtime.Object GetVariableState(string varName)
+    //{
+    //    Ink.Runtime.Object varValue = null;
+    //    dialogueVar.var.TryGetValue(varName, out varValue); //ref diccionary
+    //    if (varValue == null)
+    //    {
+    //        Debug.LogWarning("Ink Variable null:" + varName);
+    //    }
+    //    return varValue; //return si existe
+    //}
 
-    public void OnApplicationQuit()
-    {
-        if (dialogueVar != null)//check :)
-        {
-            dialogueVar.SaveVariables();
-        }
-    }
+    //public void OnApplicationQuit()
+    //{
+    //    if (dialogueVar != null)//check :)
+    //    {
+    //        dialogueVar.SaveVariables();
+    //    }
+    //}
 }
