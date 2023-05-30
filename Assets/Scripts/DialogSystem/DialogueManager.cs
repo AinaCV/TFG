@@ -87,28 +87,25 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    void ChangeItemBoolVar(Story story)
+    void ChangeItemVar(Story story)
     {
-        bool hasGivenItem = ((BoolValue)GetInstance().GetVariableState("hasGivenItem")).value;
-
-        if (hasGivenItem)
-        {
-            itemCount--;
-            Inventory.Instance.RemoveFromInventory(1); //argumento int = itemID
-        }
-        else if (!hasGivenItem)
-        {
-            Debug.Log("False");
-        }
-        else
-        {
-            Debug.LogWarning("stone count not handled by switch stament: " + hasGivenItem);
-        }
-    }
-
-    void ChangeItemCountVar(Story story)
-    {
+        //hasGivenItem = ((BoolValue)GetInstance().GetVariableState("hasGivenItem")).value;
         itemCount = ((IntValue)GetInstance().GetVariableState("itemCount")).value;
+
+        //if (hasGivenItem)
+        //{
+        //    itemCount--;
+        //    Inventory.Instance.RemoveFromInventory(1); //argumento int = itemID
+        //}
+        //else if (!hasGivenItem)
+        //{
+        //    Debug.Log("False");
+        //}
+        //else
+        //{
+        //    Debug.LogWarning("stone count not handled by switch stament: " + hasGivenItem);
+        //}
+
         if (Inventory.Instance.inventorySlots.Count > 0)
         {
             itemCount = Inventory.Instance.inventorySlots.Count;
@@ -132,8 +129,7 @@ public class DialogueManager : MonoBehaviour
             currentStory = new Story(inkJSON.text);//Crea la nueva historia, se inicializa con la info del json
             dialogueIsPlaying = true;
             dialoguePanel.SetActive(true);
-            ChangeItemCountVar(currentStory);
-            //ChangeItemBoolVar(currentStory);
+            ChangeItemVar(currentStory);
             currentStory.BindExternalFunction("removeFromInventory", (int removeItemID) =>
             {
                 Inventory.Instance.RemoveFromInventory(1);
