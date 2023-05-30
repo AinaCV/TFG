@@ -27328,7 +27328,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typingSpeed: 0.04
-  loadGlobalsJSON: {fileID: 4900000, guid: f698dc3c30f60084389012360fff531c, type: 3}
   dialoguePanel: {fileID: 263940660}
   dialogueText: {fileID: 468602340}
   continueIcon: {fileID: 2029603741}
@@ -62222,7 +62221,6 @@ GameObject:
   - component: {fileID: 1227216729}
   - component: {fileID: 1227216731}
   - component: {fileID: 1227216732}
-  - component: {fileID: 1227216733}
   m_Layer: 0
   m_Name: Trigger
   m_TagString: Untagged
@@ -62265,26 +62263,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1227216728}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 092c2ce677191ed41938e9ed6483094c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJSON: {fileID: 0}
-  activateInternDialogue: 0
---- !u!114 &1227216733
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1227216728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f5e29db42394e408bf50b7d5a75426, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   visualCue: {fileID: 1716760586}
+  inkJSON: {fileID: 4900000, guid: 8dd0254c10471194795a55f7a5e3f67c, type: 3}
+  playerInTrigger: 0
 --- !u!1001 &1227798571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -64425,7 +64411,7 @@ MonoBehaviour:
   inventoryContent: {fileID: 440418081}
   inventoryPanel: {fileID: 255335177}
   inventoryOnScreen: 0
-  hasPendant: 0
+  hasGuideonsItem: 0
 --- !u!1001 &1290827301
 PrefabInstance:
   m_ObjectHideFlags: 0
