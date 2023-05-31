@@ -72,6 +72,7 @@ I have nothing else to say.
 
 === GiveItem ===
 ~ NPC_02_haveTalked = 3
+~removeFromInventory(2)
 It wasn't so difficult, was it? Jajajaja.
 ->DONE
     
