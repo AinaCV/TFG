@@ -7,7 +7,7 @@ INCLUDE globals.ink
 ->NPC_02_Second_Interaction //Do you have it?
  -NPC_02_haveTalked == 2 && itemCount > 0: 
 ->SecondChance 
-- NPC_02_haveTalked == 2:
+- NPC_02_haveTalked == 3:
 -> NPC_02_Out_Of_Dialogue02 //Nothing else to say
 - NPC_02_haveTalked == 1:
 -> Wait // u sure?
@@ -71,7 +71,7 @@ I have nothing else to say.
 ->DONE
 
 === GiveItem ===
-~ NPC_02_haveTalked = 2
+~ NPC_02_haveTalked = 3
 It wasn't so difficult, was it? Jajajaja.
 ->DONE
     
