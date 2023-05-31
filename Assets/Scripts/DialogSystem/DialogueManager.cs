@@ -111,42 +111,51 @@ public class DialogueManager : MonoBehaviour
             itemCount = Inventory.Instance.inventorySlots.Count;
         }
 
-        switch (itemCount)
+        //switch (itemCount)
+        //{
+        //    case >= 1: //true
+        //        story.variablesState["itemCount"] = itemCount;
+        //        break;
+        //    case <= 0: //false
+        //        story.variablesState["itemCount"] = 0;
+        //        break;
+        //}
+        if(itemCount>=1)
         {
-            case >= 1: //true
-                story.variablesState["itemCount"] = itemCount;
-                break;
-            case <= 0: //false
-                story.variablesState["itemCount"] = 0;
-                break;
+            story.variablesState["itemCount"] = itemCount;
+        }
+        else if(itemCount<=0)
+        {
+            story.variablesState["itemCount"] = 0;
         }
     }
 
     public void EnterDialogueMode(TextAsset inkJSON)//coge el json con los dialogos
     {
-        if (inventory.inventorySlots.Count > 0)
-        {
-            currentStory = new Story(inkJSON.text);//Crea la nueva historia, se inicializa con la info del json
-            dialogueIsPlaying = true;
-            dialoguePanel.SetActive(true);
-            ChangeItemVar(currentStory);
-            currentStory.BindExternalFunction("removeFromInventory", (int removeItemID) =>
-            {
-                Inventory.Instance.RemoveFromInventory(1);
-            });
-            currentStory.BindExternalFunction("hasGivenItem", (bool switchBool) =>
-            {
-                hasGivenItem = true;
-            });
-            ContinueStory();
-        }
-        else
+        //if (inventory.inventorySlots.Count > 0)
+        //{
+        //    currentStory = new Story(inkJSON.text);//Crea la nueva historia, se inicializa con la info del json
+        //    dialogueIsPlaying = true;
+        //    dialoguePanel.SetActive(true);
+        //    ChangeItemVar(currentStory);
+        //    currentStory.BindExternalFunction("removeFromInventory", (int removeItemID) =>
+        //    {
+        //        Inventory.Instance.RemoveFromInventory(1);
+        //    });
+        //    currentStory.BindExternalFunction("hasGivenItem", (bool switchBool) =>
+        //    {
+        //        hasGivenItem = true;
+        //    });
+        //    ContinueStory();
+        //}
+        //else
         {
             currentStory = new Story(inkJSON.text);//Crea la nueva historia, se inicializa con la info del json
             dialogueIsPlaying = true;
             dialoguePanel.SetActive(true);
 
             dialogueVar.StartListening(currentStory);
+            ChangeItemVar(currentStory);
             currentStory.BindExternalFunction("removeFromInventory", (int removeItemID) =>
             {
                 Inventory.Instance.RemoveFromInventory(1);

@@ -22,6 +22,7 @@ public class InternDialogueTrigger : MonoBehaviour
 
     private void Update()
     {
+        Debug.Log(playerInTrigger);
         if (playerInTrigger && !InternDialogue.Instance().dialogueIsPlaying)
         {
             visualCue.SetActive(true);
@@ -39,6 +40,16 @@ public class InternDialogueTrigger : MonoBehaviour
         //if (activateInternDialogue && !InternDialogue.Instance().dialogueIsPlaying)
         //{
         //}
+    }
+
+    private void OnDisable()
+    {
+        visualCue.SetActive(true);
+        if (Inventory.Instance.hasGuideonsItem)
+        {
+            //activateInternDialogue = true;
+            InternDialogue.Instance().EnterDialogueMode(inkJSON);
+        }
     }
 
 

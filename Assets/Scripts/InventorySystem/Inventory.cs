@@ -130,6 +130,7 @@ public class Inventory : MonoBehaviour
             if (inventorySlots[i].itemID == 1) //si tenemos el objeto de gieon en el inventario
             {
                 hasGuideonsItem = true;
+                break;
             }
             else
             {
