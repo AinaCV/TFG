@@ -2,34 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InternDialogueTrigger : MonoBehaviour
+public class CharmDialogueTrigger : MonoBehaviour
 {
+    [Header("Visual Cue")] //icono para hablara con el npc
+    [SerializeField] private GameObject visualCue;
+
     [Header("Ink JSON")]
     [SerializeField] private TextAsset inkJSON;
 
+    //public bool activateInternDialogue;
     public bool playerInTrigger;
 
     private void Awake()
     {
         playerInTrigger = false;
+        visualCue.SetActive(false);
     }
 
     private void Update()
     {
-        if(playerInTrigger)
+        Debug.Log(playerInTrigger);
+        if (playerInTrigger)
         {
-            this.gameObject.SetActive(false);
+            visualCue.SetActive(true);
+        }
+        else
+        {
+            visualCue.SetActive(false);
         }
     }
-
 
     private void OnDisable()
     {
-        if (playerInTrigger)
+        if (Inventory.Instance.hasGuideonsItem)
         {
+            //activateInternDialogue = true;
             InternDialogue.Instance().EnterDialogueMode(inkJSON);
         }
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
