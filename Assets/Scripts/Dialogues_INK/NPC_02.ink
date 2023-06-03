@@ -16,36 +16,41 @@ INCLUDE globals.ink
 }
 
 === NPC_02_First_Interaction === //you're looking
-What?
+//What?
+¿Qué?
 ...
-You're looking for some guy huh.
+¿Buscas a alguien?//You're looking for some guy huh.
 *[No]
 ->DONE
-*[Yes]
+*[Sí]
 -> Yes
 
  === Yes ===
-Then go look for this
-    *[Ok...]
+//Then go look for this
+Pues ahora mismo no recuerdo bien si he visto a alguien pasando por aquí, pero si me traes una seta luminosa, quizás podría acordarme.
+    *[Te la traeré]
     ->Wait 
-    *[No]
+    *[No tengo tiempo para juegos]
     ->DONE
     
 === Wait ===
 ~NPC_02_haveTalked = 1
-I'll wait here.
+//I'll wait here.
+Estaré esperando.
 ->DONE
 
 === NPC_02_Second_Interaction === //you have item?
-Do you have it?
-    *[Yes]
+//Do you have it?
+¿Ya la tienes?
+    *[Toma]
     ->Bool
    
     *[No]
     ->DontGiveItem
 
 === Sassy ===
-Hey! Are you trying to scam me?!
+//Hey! Are you trying to scam me?!
+¡Oye, a mi no me la juega nadie!
 ->DONE
 
 === Bool ===
@@ -59,26 +64,29 @@ Hey! Are you trying to scam me?!
 
 === SecondChance === // u sure?
 ~ NPC_02_haveTalked = 2
-Are you sure yoy don't want to give me something?
-Jejeje...
-    *[Here]
+//Are you sure yoy don't want to give me something?
+¿Estás seguro de que no quieres darme nada?
+    *[Toma]
     ->GiveItem 
-    *[Shut up]
+    *[No tengo tiempo]
     ->DontGiveItem
 
 === NPC_02_Out_Of_Dialogue02 === //Nothing else to say
-I have nothing else to say.
+//I have nothing else to say.
+No tengo nada más que decir.
 ->DONE
 
 === GiveItem ===
 ~ NPC_02_haveTalked = 3
 ~removeFromInventory(2)
-It wasn't so difficult, was it? Jajajaja.
+//It wasn't so difficult, was it? 
+Si contiuas por este camino encontrarás al chico. Pero debo advertirte de que un peligro acecha esa zona, quizás ya sea demasiado tarde...
 ->DONE
     
 === DontGiveItem === //Rascall
 ~ NPC_02_haveTalked = 1
-Tsk...You little rascall.
+//Tsk...You little rascall.
+Tsk... Que maleducada.
 ->DONE
     
 ->END
