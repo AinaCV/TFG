@@ -29,7 +29,6 @@ public class DialogueManager : MonoBehaviour
 
     private Story currentStory; //using Ink.Runtime;
 
-    Inventory inventory;
     public bool dialogueIsPlaying { get; private set; }//read only
 
     public bool canContinueToNextLine = false;
@@ -71,8 +70,6 @@ public class DialogueManager : MonoBehaviour
             choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
             index++; //incrementa el indice despues de cada loop
         }
-
-        inventory = FindObjectOfType<Inventory>();
     }
 
     private void Update()
