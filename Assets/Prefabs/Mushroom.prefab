@@ -366,7 +366,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData:
     name: Mushroom
-    icon: {fileID: 21300000, guid: affeade9874cf2347abb155e8d0db4d8, type: 3}
+    icon: {fileID: 21300000, guid: e62281bc76a66c7418aa9da932cacb2f, type: 3}
     count: 1
     ID: 2
   keyPressed: 0
