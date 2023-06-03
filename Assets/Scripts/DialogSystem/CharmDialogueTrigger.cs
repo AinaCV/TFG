@@ -21,7 +21,6 @@ public class CharmDialogueTrigger : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(playerInTrigger);
         if (playerInTrigger)
         {
             visualCue.SetActive(true);

@@ -105,6 +105,11 @@ public class DialogueManager : MonoBehaviour
 
         if (Inventory.Instance.inventorySlots.Count > 0)
         {
+            //int i = InventorySlot.Instance.itemID;
+            //for (i = 0; i < itemCount; i++)
+            //{
+            //    itemCount = i;
+            //}
             itemCount = Inventory.Instance.inventorySlots.Count;
         }
 

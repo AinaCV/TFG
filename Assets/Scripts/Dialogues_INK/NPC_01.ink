@@ -1,67 +1,91 @@
 INCLUDE Globals.ink
 
-
 {
- -itemCount > 0: //if true 
-->NPC_01_Second_Interaction //You have an item
+- itemCount>=1:
+->NPC_01_Second_Interaction
+- NPC_01_haveTalked == 1 && itemCount <= 0:
+->Hint
+- NPC_01_haveTalked == 1 && itemCount >= 1:
+->NPC_01_Second_Interaction
+- NPC_01_haveTalked == 2:
+->NPC_01_Out_Of_Dialogue
+- NPC_01_haveTalked == 3:
+->DontGiveItem
  -else: //if false
 ->NPC_01_First_Interaction //You don't have anything
 }
 
-{
-- NPC_01_haveTalked:
-->NPC_01_Out_Of_Dialogue
-}
-
 === NPC_01_First_Interaction
-You don't have anything interesting...   
-    * [I'm looking for my brother, he's...]
+//You don't have anything interesting...   
+No tienes nada interesante.
+    * [Estoy buscando a mi hermano, se ha...]
       -> Uninterested
-    * [What?]
-     What are you looking at? Leave already.
+    * [¿Qué?]
+     ¿Qué estás mirando? Lárgate.
      -> DONE
-     
+
 === Uninterested ===
-So what?
+~NPC_01_haveTalked = 1
+//So what?
+¿Y a mí qué?
 ->DONE
 
 === Negotation ===
-I haven't, there aren't many humans that dare to enter these woods, and the ones that do, are ususally idiots.
-But wait! We can make a deal. 
-If you give that I promise to return the favor, who knows, maybe you'll need something from me in the future...
-*[Ok]
+//I haven't, there aren't many humans that dare to enter these woods, and the ones that do, are ususally idiots.
+No le he visto, no hay muchos humanos que se atrevan a adentrarse al bosque, y los que lo hacen son estúpidos.
+//But wait! We can make a deal. 
+¡Pero espera! No te vayas todavía.
+//If you give that I promise to return the favor, who knows, maybe you'll need something from me in the future...
+Si me das eso que llevas encima, prometo devolverte el favor.
+Quien sabe, quizás necesites mi ayuda más adelante.
+*[De acuerdo]
 ->GiveItem
-*[I'll pass]
+*[No gracias]
 ->DontGiveItem
 
 === NPC_01_Second_Interaction
-Wait! You, what is that fancy thing you have there?
-    *[Who are you?]
-     I am Drugh, I own a little and moitsy cave nearby.
-     If you give me that treasure... You are welcome in.
-    **[Have you seen a young human walking by?]
+//Wait! You, what is that fancy thing you have there?
+¡Eh tú! ¿Eso que llevas ahí es una seta luminosa?
+    *[¿Quien eres?]
+    Soy Drugh, tengo una pequeña y mohosa caverna aquí cerca.
+    Si me das esas maravillosasa seta, estás invitada.
+    **[¿Has visto a un joven por aquí?]
         -> Negotation
-    **[I'm not interested]
+    **[Tengo prisa]
         -> DontGiveItem
+    *[Sí]
+    ->Try
+  
+===Try===
+¿Me la das?
+*[Toma]
+->GiveItem
+*[No]
+->DontGiveItem
 ->DONE
-   
-=== GiveItem
+
+=== GiveItem ===
 ~hasGivenItem(true)//changes NPC2 dialogue
 ~removeFromInventory(2)
-~NPC_01_haveTalked++
+~NPC_01_haveTalked = 2
 ~itemCount--
-Lady, you'll make me cry of happiness!! 
-Bye.
-->DONE
-   
-=== DontGiveItem
-You'll regret this...
+Oh muchas gracias.
+Adiós.
 ->DONE
 
-===NPC_01_Out_Of_Dialogue
-Something shiny...
+=== DontGiveItem ===
+~NPC_01_haveTalked = 3
+Te vas a arrepentir de esto.
+->END
+
+=== Hint ===
+Algo brillante y sabroso...
 ->DONE
 
-=== NPC_01_Take_Player_Home
-Follow me if you want your brother to live.
+=== NPC_01_Out_Of_Dialogue ===
+Nos veremos pronto.
+->DONE
+
+=== NPC_01_Take_Player_Home ===
+Sígueme si quieres que tu hermano sobreviva
 ->END
