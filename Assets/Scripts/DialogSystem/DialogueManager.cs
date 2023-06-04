@@ -106,14 +106,8 @@ public class DialogueManager : MonoBehaviour
 
         if (Inventory.Instance.inventorySlots.Count > 0)
         {
-            //int i = InventorySlot.Instance.itemID;
-            //for (i = 0; i < itemCount; i++)
-            //{
-            //    itemCount = i;
-            //}
-            itemCount = Inventory.Instance.inventorySlots.Count(slots => slots.itemID == 2); //función Count de LINQ con una expresión lambda para contar solo los elementos en
-                                                                                                               //Inventory.Instance.inventorySlots que cumplan la condición slot.itemID == 2.
-                                                                                                               //El resultado se asigna a itemCount y luego se actualiza en la variable de estado de la historia de Ink.
+            itemCount = Inventory.Instance.inventorySlots.Count(slots => slots.itemID == 2); //función Count de LINQ con una expresión lambda para contar solo
+                                                                                             //los elementos en inventorySlots que cumplan la condición slot.itemID == 2
         }
 
         if (itemCount >= 1)
