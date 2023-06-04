@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using Ink.Runtime;
 using UnityEngine.EventSystems;
+using System.Linq;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -110,7 +111,9 @@ public class DialogueManager : MonoBehaviour
             //{
             //    itemCount = i;
             //}
-            itemCount = Inventory.Instance.inventorySlots.Count;
+            itemCount = Inventory.Instance.inventorySlots.Count(slots => slots.itemID == 2); //función Count de LINQ con una expresión lambda para contar solo los elementos en
+                                                                                                               //Inventory.Instance.inventorySlots que cumplan la condición slot.itemID == 2.
+                                                                                                               //El resultado se asigna a itemCount y luego se actualiza en la variable de estado de la historia de Ink.
         }
 
         if (itemCount >= 1)
