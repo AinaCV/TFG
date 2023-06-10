@@ -12,6 +12,7 @@ public class MenuController : MonoBehaviour
 
     public void PlayButton()
     {
+        PlayerSaveData.continueGame = true;
         SceneManager.LoadScene("Game");
     }
 
@@ -25,8 +26,11 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
-    //public void NewGamebutton()
-    //{
-    //    SceneManager.LoadScene("Game");
-    //}
+    public void NewGamebutton()
+    {
+        PlayerPrefs.DeleteAll();
+        PlayerSaveData.continueGame = false;
+
+        SceneManager.LoadScene("Game");
+    }
 }

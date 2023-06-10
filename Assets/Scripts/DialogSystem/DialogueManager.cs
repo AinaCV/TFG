@@ -257,11 +257,11 @@ public class DialogueManager : MonoBehaviour
         return varValue; //return si existe
     }
 
-    //public void OnApplicationQuit()
-    //{
-    //    if (dialogueVar != null)//check :)
-    //    {
-    //        dialogueVar.SaveVariables();
-    //    }
-    //}
+    public void OnApplicationQuit()
+    {
+        if (dialogueVar != null)//check :)
+        {
+            dialogueVar.SaveVariables();
+        }
+    }
 }

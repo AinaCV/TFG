@@ -8,12 +8,15 @@ public class PlayerSaveData : MonoBehaviour
 {
     public static PlayerData playerData = new PlayerData();
     public Player player;
-
+    public static bool continueGame;
     //public float timeToSave = 0f;
 
     private void Start()
     {
-        LoadPlayer();
+        if (continueGame)
+        {
+            LoadPlayer();
+        }
     }
 
     private void Update()
@@ -75,7 +78,6 @@ public class PlayerSaveData : MonoBehaviour
         }
     }
 }
-
 
 [System.Serializable]
 public struct PlayerData
