@@ -6,7 +6,6 @@ public class ItemPickUp : MonoBehaviour
 {
     public ItemData itemData;
     public bool keyPressed = false;
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
@@ -23,6 +22,7 @@ public class ItemPickUp : MonoBehaviour
     {
         if (keyPressed)
         {
+            PlayerSaveData.itemPickedUp = true;
             Inventory.Instance.AddToInventory(itemData, itemData.count);
             Inventory.Instance.UpdateInventory();
             Inventory.Instance.CheckID();

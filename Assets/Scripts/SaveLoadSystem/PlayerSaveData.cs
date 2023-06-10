@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class PlayerSaveData : MonoBehaviour
 {
     public static PlayerData playerData = new PlayerData();
+
     public Player player;
     public static bool continueGame;
+    public static bool itemPickedUp;
     //public float timeToSave = 0f;
 
     private void Start()
@@ -76,22 +78,35 @@ public class PlayerSaveData : MonoBehaviour
 
             i.UpdateInventory();
         }
+
+        //ItemManager itemManager = FindObjectOfType<ItemManager>();
+
+        //foreach (ItemData item in itemManager.availableItems)
+        //{
+        //    if (!item.collected)
+        //    {
+        //        Instantiate(item.prefab, item.spawnPosition, item.spawnRotation);
+        //    }
+        //}
+
+        //public bool collected;
+
     }
-}
 
-[System.Serializable]
-public struct PlayerData
-{
-    public Vector3 playerPosition;
-    public Quaternion playerRotation;
-    public List<ItemData> itemsList;
-    //public List<DecisionData> decisions;
-
-    public PlayerData(Vector3 position, Quaternion rotation, ItemData items)
+    [System.Serializable]
+    public struct PlayerData
     {
-        playerPosition = new Vector3(659.51947f, 12.7185326f, 503.6745f);
-        playerRotation = new Quaternion(0, 0.63f, 0, 0.77f);
-        itemsList = new List<ItemData>();
-        //decisions = new List<DecisionData>();
+        public Vector3 playerPosition;
+        public Quaternion playerRotation;
+        public List<ItemData> itemsList;
+        //public List<DecisionData> decisions;
+
+        public PlayerData(Vector3 position, Quaternion rotation, ItemData items)
+        {
+            playerPosition = new Vector3(0, 0, 0);
+            playerRotation = new Quaternion(0, 0, 0, 0);
+            itemsList = new List<ItemData>();
+            //decisions = new List<DecisionData>();
+        }
     }
 }
