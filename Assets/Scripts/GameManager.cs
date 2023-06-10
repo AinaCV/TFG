@@ -7,9 +7,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    //public GameObject menuReference;
+    public GameObject menuReference;
     public static GameManager instance; //static--> para los demás componentes puedan acceder al GM
-    //public bool hasItemsInInventory;
 
     void Awake()
     {
@@ -27,16 +26,16 @@ public class GameManager : MonoBehaviour
     private void Update()
     {
 
-        //if (Input.GetKeyDown(KeyCode.Escape))
-        //{
-        //    if (!menuReference.activeInHierarchy)
-        //    {
-        //        menuReference.SetActive(true);
-        //    }
-        //    else if (menuReference.activeInHierarchy)
-        //    {
-        //        menuReference.SetActive(false);
-        //    }
-        //}
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (!menuReference.activeInHierarchy)
+            {
+                menuReference.SetActive(true);
+            }
+            else if (menuReference.activeInHierarchy)
+            {
+                menuReference.SetActive(false);
+            }
+        }
     }
 }
