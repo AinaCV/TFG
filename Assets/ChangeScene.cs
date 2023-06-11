@@ -6,23 +6,81 @@ using UnityEngine.SceneManagement;
 public class ChangeScene : MonoBehaviour
 {
     private bool animationFinished = false;
-
-    // Llamaremos a esta función cuando la animación haya terminado
+    public GameObject NPC_01;
+    public Player player;
+    [SerializeField] private TextAsset inkJSON;
+    private float rotationSpeed = 1f;
+    public bool specialEndCalled = false;
+    public Transform npcTarget;
+    bool dialogueExecuted = false;
     public void AnimationFinished()
     {
         animationFinished = true;
     }
 
-    private void Update()
+    public void Update()
     {
-        if (animationFinished)
+        if (animationFinished && DialogueManager.GetInstance().hasGivenItem)
+        {
+            specialEndCalled = true;
+        }
+
+        if (animationFinished && !DialogueManager.GetInstance().hasGivenItem)
         {
             ChangeSceneAfterAnim();
+        }
+        else if (specialEndCalled)
+        {
+            if (!dialogueExecuted)
+            {
+                SpecialEnd();
+                dialogueExecuted = true;
+            }
         }
     }
 
     private void ChangeSceneAfterAnim()
     {
         SceneManager.LoadScene("End");
+    }
+
+    public void SpecialEnd()
+    {
+
+        NPC_01.transform.position = new Vector3(-89.45f, 1.64f, 73.73f);
+        NPC_01.transform.rotation = new Quaternion(-6.16e-05f, -0.97f, -0.00f, 0.23f);
+        DialogueTrigger trigger = NPC_01.GetComponentInChildren<DialogueTrigger>();
+        if (trigger)
+        {
+            trigger.enabled = false;
+        }
+
+        Vector3 direction = npcTarget.position - player.transform.position;
+        direction.y = 0f;
+        Quaternion targetRotation = Quaternion.LookRotation(direction);
+        player.transform.rotation = Quaternion.Lerp(player.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+
+        DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
+
+        if (DialogueManager.GetInstance().currentStory.canContinue)
+        {
+            Debug.Log(dialogueExecuted);
+        }
+        else
+        {
+            ChangeSceneAfterAnim();
+        }
+    }
+
+    public void ChangeSceneAfterDialog()
+    {
+        if (specialEndCalled)
+        {
+            SceneManager.LoadScene("End");
+        }
+        else
+        {
+            ChangeSceneAfterAnim();
+        }
     }
 }

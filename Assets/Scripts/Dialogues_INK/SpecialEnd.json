@@ -1,0 +1,1 @@
+﻿{"inkVersion":20,"root":[["\n",{"->":"StoryEnd"},["done",{"#f":5,"#n":"g-0"}],null],"done",{"StoryEnd":["ev",0,"/ev",{"VAR=":"itemCount","re":true},"^Once upon a time...","\n","^They lived happily ever after.","\n","end",{"#f":1}],"global decl":["ev",0,{"VAR=":"itemCount"},0,{"VAR=":"NPC_01_haveTalked"},0,{"VAR=":"NPC_02_haveTalked"},"/ev","end",null],"#f":1}],"listDefs":{}}

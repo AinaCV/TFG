@@ -28,7 +28,7 @@ public class DialogueManager : MonoBehaviour
 
     private TextMeshProUGUI[] choicesText; //array de cada texto para cada elección
 
-    private Story currentStory; //using Ink.Runtime;
+    public Story currentStory; //using Ink.Runtime;
 
     public bool dialogueIsPlaying { get; private set; }//read only
 
@@ -87,22 +87,7 @@ public class DialogueManager : MonoBehaviour
 
     void ChangeItemVar(Story story)
     {
-        //hasGivenItem = ((BoolValue)GetInstance().GetVariableState("hasGivenItem")).value;
         itemCount = ((IntValue)GetInstance().GetVariableState("itemCount")).value;
-
-        //if (hasGivenItem)
-        //{
-        //    itemCount--;
-        //    Inventory.Instance.RemoveFromInventory(1); //argumento int = itemID
-        //}
-        //else if (!hasGivenItem)
-        //{
-        //    Debug.Log("False");
-        //}
-        //else
-        //{
-        //    Debug.LogWarning("stone count not handled by switch stament: " + hasGivenItem);
-        //}
 
         if (Inventory.Instance.inventorySlots.Count > 0)
         {
@@ -113,10 +98,12 @@ public class DialogueManager : MonoBehaviour
         if (itemCount >= 1)
         {
             story.variablesState["itemCount"] = itemCount;
+            Debug.Log(itemCount);
         }
         else if (itemCount <= 0)
         {
             story.variablesState["itemCount"] = 0;
+            Debug.Log("menor o igual a cero" + itemCount);
         }
     }
 
@@ -135,6 +122,8 @@ public class DialogueManager : MonoBehaviour
         currentStory.BindExternalFunction("hasGivenItem", (bool switchBool) =>
         {
             hasGivenItem = true;
+            Debug.Log("hasGivenItem" + hasGivenItem);
+
         });
         ContinueStory();
     }

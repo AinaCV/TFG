@@ -14,13 +14,11 @@ public class AnimationTrigger : MonoBehaviour
 
     public void OnTriggerStay(Collider other)
     {
-            anim.GetBool("playerInTrigger");
+        anim.GetBool("playerInTrigger");
         Player player = other.GetComponent<Player>();
         if (player != null)
         {
             anim.SetBool("playerInTrigger", true);
-            Debug.Log("Mensaje de depuración");
-            //anim.Play("Lift");
         }
     }
 }
