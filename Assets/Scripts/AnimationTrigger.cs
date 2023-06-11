@@ -18,7 +18,6 @@ public class AnimationTrigger : MonoBehaviour
         if (player != null)
         {
             anim.Play("Lift");
-            GameManager.instance.EndAnimation(3);
         }
     }
 }

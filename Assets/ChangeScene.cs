@@ -1,7 +1,9 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneTransitionController : MonoBehaviour
+public class ChangeScene : MonoBehaviour
 {
     private bool animationFinished = false;
 
@@ -15,11 +17,11 @@ public class SceneTransitionController : MonoBehaviour
     {
         if (animationFinished)
         {
-            ChangeScene();
+            ChangeSceneAfterAnim();
         }
     }
 
-    private void ChangeScene()
+    private void ChangeSceneAfterAnim()
     {
         SceneManager.LoadScene("End");
     }
