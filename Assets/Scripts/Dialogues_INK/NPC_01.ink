@@ -21,8 +21,12 @@ No tienes nada interesante.
     * [Estoy buscando a mi hermano, se ha...]
       -> Uninterested
     * [¿Qué?]
-     ¿Qué estás mirando? Lárgate.
-     -> DONE
+     -> Borde
+
+=== Borde ===
+~NPC_01_haveTalked = 1
+¿Qué estás mirando? Lárgate.
+->DONE
 
 === Uninterested ===
 ~NPC_01_haveTalked = 1
