@@ -46,8 +46,15 @@ public class CameraController : MonoBehaviour
 
             yRotation -= mouseY; // el menos es importante
             transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(yRotation, 0, 0), 1f);
-
+            
             player.transform.Rotate(Vector3.up * mouseX); //movimiento horizontal 
+
+            Vector3 startVector = transform.localPosition; // Vector actual de la cámara
+            Vector3 endVector = new Vector3(0f, 1.49f, -3f);
+            float t = 0.1f;
+
+            Vector3 lerpedVector = Vector3.Lerp(startVector, endVector, t);
+            transform.localPosition = lerpedVector;
             isMoving = true;
         }
         else

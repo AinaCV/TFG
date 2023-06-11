@@ -33172,7 +33172,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 4ca940b4252b032469bf2e6f4069394a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.42
+      value: -7.12
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 4ca940b4252b032469bf2e6f4069394a,
         type: 3}
@@ -64752,6 +64752,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1256614895}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1419325502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1419325503}
+  - component: {fileID: 1419325504}
+  m_Layer: 0
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1419325503
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419325502}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 10.29, y: 1.79, z: -1.09}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1993301658}
+  m_RootOrder: 22
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1419325504
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1419325502}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.05, y: 4.94, z: 9}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1421297955
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -77059,7 +77104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1702442402}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.45, y: 1.49, z: -2.78}
+  m_LocalPosition: {x: 0.45, y: 1.49, z: -3.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -91896,6 +91941,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4672724840074002060, guid: 6fac9253caf32ac44bdcbd2164639d45,
     type: 3}
   m_PrefabInstance: {fileID: 1992734255}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1993301658 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4ca940b4252b032469bf2e6f4069394a,
+    type: 3}
+  m_PrefabInstance: {fileID: 721057443}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1995306768
 PrefabInstance:
