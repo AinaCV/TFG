@@ -2,6 +2,5 @@ INCLUDE Globals.ink
 -> StoryEnd
 === StoryEnd
 ~itemCount=0
-Once upon a time...
-They lived happily ever after.
+¡Rápido, coge al chico y sigueme!
 -> END

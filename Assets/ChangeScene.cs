@@ -13,6 +13,7 @@ public class ChangeScene : MonoBehaviour
     public bool specialEndCalled = false;
     public Transform npcTarget;
     bool dialogueExecuted = false;
+
     public void AnimationFinished()
     {
         animationFinished = true;
@@ -46,7 +47,6 @@ public class ChangeScene : MonoBehaviour
 
     public void SpecialEnd()
     {
-
         NPC_01.transform.position = new Vector3(-89.45f, 1.64f, 73.73f);
         NPC_01.transform.rotation = new Quaternion(-6.16e-05f, -0.97f, -0.00f, 0.23f);
         DialogueTrigger trigger = NPC_01.GetComponentInChildren<DialogueTrigger>();
@@ -61,26 +61,13 @@ public class ChangeScene : MonoBehaviour
         player.transform.rotation = Quaternion.Lerp(player.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
 
         DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
-
-        if (DialogueManager.GetInstance().currentStory.canContinue)
-        {
-            Debug.Log(dialogueExecuted);
-        }
-        else
-        {
-            ChangeSceneAfterAnim();
-        }
+        StartCoroutine(ChangeSceneCoroutine());
     }
 
-    public void ChangeSceneAfterDialog()
+    private IEnumerator ChangeSceneCoroutine()
     {
-        if (specialEndCalled)
-        {
-            SceneManager.LoadScene("End");
-        }
-        else
-        {
-            ChangeSceneAfterAnim();
-        }
+        yield return new WaitForSeconds(5);
+
+        SceneManager.LoadScene("End");
     }
 }

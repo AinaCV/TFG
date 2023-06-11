@@ -28,7 +28,7 @@ public class DialogueManager : MonoBehaviour
 
     private TextMeshProUGUI[] choicesText; //array de cada texto para cada elección
 
-    public Story currentStory; //using Ink.Runtime;
+    private Story currentStory; //using Ink.Runtime;
 
     public bool dialogueIsPlaying { get; private set; }//read only
 
@@ -158,6 +158,12 @@ public class DialogueManager : MonoBehaviour
         {
             StartCoroutine(ExitDialogueMode());
         }
+ //else if (currentStory.currentTags.Contains(StoryEnd)) //%% !currentStory.canContinue
+        //{
+        //    Debug.Log("Reached StoryEnd node");
+        //    ChangeScene.GetInstance().ChangeSceneAfterDialogue();
+        //    Debug.Log(sceneChangeNode);
+        //}
     }
 
     void DisplayChoices()
@@ -246,11 +252,11 @@ public class DialogueManager : MonoBehaviour
         return varValue; //return si existe
     }
 
-    public void OnApplicationQuit()
-    {
-        if (dialogueVar != null)//check :)
-        {
-            dialogueVar.SaveVariables();
-        }
-    }
+    //public void OnApplicationQuit()
+    //{
+    //    if (dialogueVar != null)//check :)
+    //    {
+    //        dialogueVar.SaveVariables();
+    //    }
+    //}
 }
