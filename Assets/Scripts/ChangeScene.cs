@@ -9,7 +9,7 @@ public class ChangeScene : MonoBehaviour
     public GameObject NPC_01;
     public Player player;
     [SerializeField] private TextAsset inkJSON;
-    private float rotationSpeed = 1f;
+    private float rotationSpeed = 5f;
     public bool specialEndCalled = false;
     public Transform npcTarget;
     bool dialogueExecuted = false;
@@ -54,7 +54,7 @@ public class ChangeScene : MonoBehaviour
 
     public void SpecialEnd()
     {
-        NPC_01.transform.position = new Vector3(-89.45f, 1.64f, 73.73f);
+        NPC_01.transform.position = new Vector3(-88.45f, 1.64f, 75.73f);
         NPC_01.transform.rotation = new Quaternion(-6.16e-05f, -0.97f, -0.00f, 0.23f);
         DialogueTrigger trigger = NPC_01.GetComponentInChildren<DialogueTrigger>();
         if (trigger)
@@ -62,10 +62,13 @@ public class ChangeScene : MonoBehaviour
             trigger.enabled = false;
         }
 
+        var timeCount = rotationSpeed * Time.deltaTime;
         Vector3 direction = npcTarget.position - player.transform.position;
         direction.y = 0f;
         Quaternion targetRotation = Quaternion.LookRotation(direction);
-        player.transform.rotation = Quaternion.Lerp(player.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        player.transform.rotation = Quaternion.RotateTowards(player.transform.rotation, targetRotation, timeCount);
+
+        //player.transform.rotation = targetRotation;
 
         DialogueManager.GetInstance().EnterDialogueMode(inkJSON);
         StartCoroutine(ChangeSceneCoroutine());
@@ -73,7 +76,7 @@ public class ChangeScene : MonoBehaviour
 
     private IEnumerator ChangeSceneCoroutine()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(8);
         enemyDialogue.SetActive(true);
     }
 }
