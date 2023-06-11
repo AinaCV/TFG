@@ -8,7 +8,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public GameObject menuReference;
-    public bool playGame = false;
     public static GameManager instance; //static--> para los demás componentes puedan acceder al GM
 
     void Awake()

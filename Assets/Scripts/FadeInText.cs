@@ -1,102 +1,198 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class FadeInText : MonoBehaviour
 {
-    //[SerializeField] private float fadeDuration = 1f;
-    //[SerializeField] private float scaleDuration = 1f;
-
-    private Text text;
-    //private CanvasGroup canvasGroup;
-    const float maxTime = 2.0f;
-    public float currentTime = 0.0f;
+    public TMP_Text textElement;
+    public float fadeInDuration = 0.5f;
+    public float fadeOutDuration = 0.5f;
+    public float delayBetweenPhrases = 1f;
+    private bool showDialogue = false;
+    private bool isShowingPhrase = false;
 
     private void Start()
     {
-        //canvasGroup = GetComponent<CanvasGroup>();
-
-        //StartCoroutine(StartFadeIn());
+        gameObject.SetActive(false);
     }
 
-    void Update()
+    private void Update()
     {
-        //StartCoroutine(Fade());
-        currentTime += Time.deltaTime; //que cada frame sume tiempo
-        if (currentTime >= maxTime)
+        if (!showDialogue && !isShowingPhrase)
         {
-            StartCoroutine(FadeIn());
-
-            Debug.Log("PATO");
-            currentTime = 0;
+            gameObject.SetActive(true);
+            StartCoroutine(ShowPhrases());
         }
     }
 
-    IEnumerator Fade() //Fade out
+    public IEnumerator ShowPhrases()
     {
-        for (float i = 1.0f; i >= 0f; i -= 0.01f) //alpha 1 es totalmente opaco, alpha 0 es transparente
-        {
-            Color c = text.color;
-            c.a = i; //a = alpha, i es el que está decrementando
-            text.color = c;
-            yield return null; //yield para poder devolver un IEnumerator
-                               //yield return new WaitForSeconds(0.5f);
-        }
+        showDialogue = true;
+        textElement.gameObject.SetActive(true);
+
+        isShowingPhrase = true;
+        yield return StartCoroutine(FadeIn(""));
+        yield return new WaitForSeconds(delayBetweenPhrases);
+        yield return StartCoroutine(FadeOut());
+        isShowingPhrase = false;
+
+        isShowingPhrase = true;
+        yield return StartCoroutine(FadeIn("Lilith"));
+        yield return new WaitForSeconds(delayBetweenPhrases);
+        yield return StartCoroutine(FadeOut());
+        isShowingPhrase = false;
+
+        isShowingPhrase = true;
+        yield return StartCoroutine(FadeIn("Si quieres salvar a tu hermano, debes buscarme en el abismo."));
+        yield return new WaitForSeconds(delayBetweenPhrases);
+        yield return StartCoroutine(FadeOut());
+        isShowingPhrase = false;
+
+        isShowingPhrase = true;
+        yield return StartCoroutine(FadeIn("Te estaré esperando"));
+        yield return new WaitForSeconds(delayBetweenPhrases);
+        yield return StartCoroutine(FadeOut());
+        isShowingPhrase = false;
+        
+
+        showDialogue = false;
+
+        Debug.Log(showDialogue);
+        StartCoroutine(ChangeSceneAfterDialogue());
+
     }
 
-    IEnumerator FadeIn()
+    private IEnumerator FadeIn(string phrase)
     {
-        for (float i = 0.0f; i <= 0f; i = 1.0f) //alpha 1 es totalmente opaco, alpha 0 es transparente
+        textElement.alpha = 0f;
+        textElement.SetText(phrase);
+
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeInDuration)
         {
-            Color c = text.color;
-            c.a = i; //a = alpha, i es el que está decrementando
-            text.color = c;
+            float alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeInDuration);
+            textElement.alpha = alpha;
+            elapsedTime += Time.deltaTime;
             yield return null;
         }
+
+        textElement.alpha = 1f;
     }
 
-    //private IEnumerator StartFadeIn()
-    //{
-    //    canvasGroup.alpha = 0f;
-    //    canvasGroup.blocksRaycasts = false;
+    private IEnumerator FadeOut()
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < fadeOutDuration)
+        {
+            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeOutDuration);
+            textElement.alpha = alpha;
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
 
-    //    // Fade-in
-    //    float elapsedTime = 0f;
-    //    while (elapsedTime < fadeDuration)
-    //    {
-    //        float alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
-    //        canvasGroup.alpha = alpha;
-    //        elapsedTime += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //    canvasGroup.alpha = 1f;
+        textElement.alpha = 0f;
 
-    //    // Scale-in
-    //    Vector3 originalScale = transform.localScale;
-    //    float scaleElapsedTime = 0f;
-    //    while (scaleElapsedTime < scaleDuration)
-    //    {
-    //        float scale = Mathf.Lerp(0.5f, 1f, scaleElapsedTime / scaleDuration);
-    //        transform.localScale = originalScale * scale;
-    //        scaleElapsedTime += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //    transform.localScale = originalScale;
+        // Desactivar el panel de diálogo después de mostrar la última frase
+        if (!isShowingPhrase)
+        {
+            gameObject.SetActive(false);
+        }
+    }
 
-    //    // Fade-out
-    //    yield return new WaitForSeconds(fadeDuration);
-    //    elapsedTime = 0f;
-    //    while (elapsedTime < fadeDuration)
-    //    {
-    //        float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
-    //        canvasGroup.alpha = alpha;
-    //        elapsedTime += Time.deltaTime;
-    //        yield return null;
-    //    }
-    //    canvasGroup.alpha = 0f;
-
-    //    // Disable text object
-    //    canvasGroup.blocksRaycasts = false;
-    //    gameObject.SetActive(false);
-    //}
+    private IEnumerator ChangeSceneAfterDialogue()
+    {
+        yield return new WaitForSeconds(2f); // Agrega un tiempo de espera antes de cambiar de escena si es necesario
+        SceneManager.LoadScene("Menu");
+    }
 }
+
+//using UnityEngine;
+//using UnityEngine.UI;
+//using System.Collections;
+//using TMPro;
+
+//public class FadeInText : MonoBehaviour
+//{
+//    public TMP_Text textElement;
+//    public float fadeInDuration = 0.5f;
+//    public float fadeOutDuration = 0.5f;
+//    public float delayBetweenPhrases = 1f;
+//    private bool showDialogue = false;
+//    private bool hasBeenPlayed = false;
+
+//    private void Start()
+//    {
+//        gameObject.SetActive(false);
+//    }
+
+//    private void Update()
+//    {
+//        if (hasBeenPlayed && showDialogue)
+//        {
+//            StopAllCoroutines();
+//            showDialogue = false;
+//        }
+//        else if (!showDialogue)
+//        {
+//            StartCoroutine(ShowPhrases());
+//        }
+//    }
+
+//    public IEnumerator ShowPhrases()
+//    {
+//        textElement.gameObject.SetActive(true);
+//        hasBeenPlayed = true;
+
+//        while (!showDialogue)
+//        {
+//            yield return StartCoroutine(FadeIn("Lilith"));
+//            yield return new WaitForSeconds(delayBetweenPhrases);
+//            yield return StartCoroutine(FadeOut());
+
+//            yield return StartCoroutine(FadeIn("Si quieres salvar a tu hermano, debes buscarme en el abismo."));
+//            yield return new WaitForSeconds(delayBetweenPhrases);
+//            yield return StartCoroutine(FadeOut());
+
+//            yield return new WaitForSeconds(delayBetweenPhrases);
+//            yield return StartCoroutine(FadeOut());
+//            yield return new WaitForSeconds(delayBetweenPhrases);
+//            hasBeenPlayed = true;
+//        }
+
+//        textElement.gameObject.SetActive(false);
+//        Debug.Log(showDialogue);
+//    }
+
+//    private IEnumerator FadeIn(string phrase)
+//    {
+//        textElement.alpha = 0f;
+//        textElement.SetText(phrase);
+
+//        float elapsedTime = 0f;
+//        while (elapsedTime < fadeInDuration)
+//        {
+//            float alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeInDuration);
+//            textElement.alpha = alpha;
+//            elapsedTime += Time.deltaTime;
+//            yield return null;
+//        }
+
+//        textElement.alpha = 1f;
+//    }
+
+//    private IEnumerator FadeOut()
+//    {
+//        float elapsedTime = 0f;
+//        while (elapsedTime < fadeOutDuration)
+//        {
+//            float alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeOutDuration);
+//            textElement.alpha = alpha;
+//            elapsedTime += Time.deltaTime;
+//            yield return null;
+//        }
+
+//        textElement.alpha = 0f;
+//    }
+//}

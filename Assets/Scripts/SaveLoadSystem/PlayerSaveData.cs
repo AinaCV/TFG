@@ -15,10 +15,10 @@ public class PlayerSaveData : MonoBehaviour
 
     private void Start()
     {
-        if (continueGame)
-        {
+        //if (continueGame)
+        //{
+        //}
             LoadPlayer();
-        }
     }
 
     private void Update()
