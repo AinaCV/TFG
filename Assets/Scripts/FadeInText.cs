@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 public class FadeInText : MonoBehaviour
 {
     public TMP_Text textElement;
-    public float fadeInDuration = 0.5f;
-    public float fadeOutDuration = 0.5f;
+    public float fadeInDuration = 5f;
+    public float fadeOutDuration = 5f;
     public float delayBetweenPhrases = 1f;
     private bool showDialogue = false;
     private bool isShowingPhrase = false;
