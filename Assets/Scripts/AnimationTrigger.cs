@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AnimationTrigger : MonoBehaviour
 {
-    Animator anim;
+    public Animator anim;
     public GameObject gideon;
 
     private void Start()
@@ -12,12 +12,15 @@ public class AnimationTrigger : MonoBehaviour
         anim = gideon.GetComponent<Animator>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerStay(Collider other)
     {
+            anim.GetBool("playerInTrigger");
         Player player = other.GetComponent<Player>();
         if (player != null)
         {
-            anim.Play("Lift");
+            anim.SetBool("playerInTrigger", true);
+            Debug.Log("Mensaje de depuración");
+            //anim.Play("Lift");
         }
     }
 }
