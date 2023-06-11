@@ -13,6 +13,12 @@ public class ChangeScene : MonoBehaviour
     public bool specialEndCalled = false;
     public Transform npcTarget;
     bool dialogueExecuted = false;
+    public GameObject enemyDialogue;
+
+    private void Start()
+    {
+        enemyDialogue.SetActive(false);
+    }
 
     public void AnimationFinished()
     {
@@ -28,7 +34,8 @@ public class ChangeScene : MonoBehaviour
 
         if (animationFinished && !DialogueManager.GetInstance().hasGivenItem)
         {
-            ChangeSceneAfterAnim();
+            enemyDialogue.SetActive(true);
+            //ChangeSceneAfterAnim();
         }
         else if (specialEndCalled)
         {
@@ -40,10 +47,10 @@ public class ChangeScene : MonoBehaviour
         }
     }
 
-    private void ChangeSceneAfterAnim()
-    {
-        SceneManager.LoadScene("End");
-    }
+    //private void ChangeSceneAfterAnim()
+    //{
+    //    SceneManager.LoadScene("End");
+    //}
 
     public void SpecialEnd()
     {
@@ -67,7 +74,6 @@ public class ChangeScene : MonoBehaviour
     private IEnumerator ChangeSceneCoroutine()
     {
         yield return new WaitForSeconds(5);
-
-        SceneManager.LoadScene("End");
+        enemyDialogue.SetActive(true);
     }
 }
