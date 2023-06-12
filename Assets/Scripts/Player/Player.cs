@@ -10,10 +10,10 @@ public class Player : MonoBehaviour
     public float runSpeed = 10f;
     public float gravityforce = 50f;
 
-    [Header("Health")]
-    public int currentHealth;
-    public int maxHealth = 10;
-    public HealthBar healthBar;
+    //[Header("Health")]
+    //public int currentHealth;
+    //public int maxHealth = 10;
+    //public HealthBar healthBar;
 
     [Header("Stamina")]
     public float currentStamina;
@@ -22,12 +22,12 @@ public class Player : MonoBehaviour
     public float recoverStamina;
     public StaminaBar staminaBar;
 
-    [Header("Magic")]
-    public float currentMagic;
-    public float maxMagic = 10;
-    public float recoverMagicMaxTime = 5;
-    public float recoverMagic;
-    public MagicBar magicBar;
+    //[Header("Magic")]
+    //public float currentMagic;
+    //public float maxMagic = 10;
+    //public float recoverMagicMaxTime = 5;
+    //public float recoverMagic;
+    //public MagicBar magicBar;
 
     [Header("Bools")]
     public bool isRegenerating = false;
@@ -44,12 +44,12 @@ public class Player : MonoBehaviour
     private void Start()
     {
         controller = GetComponent<CharacterController>();
-        currentHealth = maxHealth;
-        healthBar.SetMaxHaelth(maxHealth);
-        currentStamina = maxStamina;
-        staminaBar.SetMaxStamina(maxStamina);
-        currentMagic = maxMagic;
-        magicBar.SetMaxMagic(maxMagic);
+        //currentHealth = maxHealth;
+        //healthBar.SetMaxHaelth(maxHealth);
+        //currentStamina = maxStamina;
+        //staminaBar.SetMaxStamina(maxStamina);
+        //currentMagic = maxMagic;
+        //magicBar.SetMaxMagic(maxMagic);
     }
 
     void Update()
@@ -92,11 +92,11 @@ public class Player : MonoBehaviour
         //Death();
     }
 
-    void TakeDamage(int damage)
-    {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-    }
+    //void TakeDamage(int damage)
+    //{
+    //    currentHealth -= damage;
+    //    healthBar.SetHealth(currentHealth);
+    //}
 
     void Move()
     {
