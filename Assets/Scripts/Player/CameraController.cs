@@ -50,7 +50,7 @@ public class CameraController : MonoBehaviour
             player.transform.Rotate(Vector3.up * mouseX); //movimiento horizontal 
 
             Vector3 startVector = transform.localPosition; // Vector actual de la cámara
-            Vector3 endVector = new Vector3(0f, 1.49f, -3f);
+            Vector3 endVector = new Vector3(1f, 1.49f, -4.25f);
             float t = 0.1f;
 
             Vector3 lerpedVector = Vector3.Lerp(startVector, endVector, t);
