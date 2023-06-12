@@ -30166,7 +30166,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 630091517}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.57, y: 0.49, z: 2.55}
+  m_LocalPosition: {x: 1.57, y: 0.49, z: 4.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -64826,7 +64826,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  runSpeed: 10
+  runSpeed: 8
   gravityforce: 50
   currentStamina: 10
   maxStamina: 10
@@ -77641,7 +77641,6 @@ GameObject:
   - component: {fileID: 1702442405}
   - component: {fileID: 1702442404}
   - component: {fileID: 1702442407}
-  - component: {fileID: 1702442409}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -77763,47 +77762,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1415855280}
   cameraPivot: {fileID: 1702442403}
-  mouseSens: 300
+  mouseSens: 200
   smoothTime: 1
   maxY: 20
   minY: -25
   rotationSpeed: 1
   isMoving: 0
   target: {fileID: 130274235}
---- !u!114 &1702442409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1702442402}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 1
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1001 &1703952069
 PrefabInstance:
   m_ObjectHideFlags: 0

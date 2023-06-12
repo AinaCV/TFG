@@ -7,7 +7,7 @@ public class CameraController : MonoBehaviour
     public Player player;
     public Transform cameraPivot;
 
-    public float mouseSens = 400f;
+    public float mouseSens = 150;
     public float smoothTime = 0.2f;
     public float maxY;
     public float minY;
