@@ -1,3 +1,3 @@
 ¡Gideon! 
-¡¿Qué estás haciend?!
+¡¿Qué estás haciendo?!
 ->END
